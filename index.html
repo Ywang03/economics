@@ -1,0 +1,3857 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>中级经济师（经济基础）闯关答题</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#121a33; --ink:#e8ecff; --muted:#a8b0d9;
+      --good:#7CFFB2; --bad:#ff6b8b; --warn:#ffcc66; --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--ink);
+      font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+      background:radial-gradient(1100px 700px at 20% 0%, #15214a 0%, var(--bg) 55%);
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      padding:14px 18px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:linear-gradient(180deg, rgba(18,26,51,0.95), rgba(18,26,51,0.65));
+      backdrop-filter: blur(8px);
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    header .title{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    header h1{margin:0; font-size:15px; letter-spacing:.2px;}
+    .tag{
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,0.12);
+      padding:3px 8px; border-radius:999px;
+      background:rgba(255,255,255,0.04);
+    }
+    main{
+      padding:16px 18px 26px;
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(18,26,51,0.92), rgba(18,26,51,0.78));
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+      overflow:hidden;
+    }
+    .hd{padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; gap:10px;}
+    .hd h2{margin:0; font-size:13px;}
+    .bd{padding:12px 14px 14px;}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:9px 11px; border-radius:12px;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.06); color:var(--ink);
+      cursor:pointer; user-select:none;
+      transition:transform .05s ease, background .2s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,0.09)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{border-color:rgba(124,255,178,0.22); box-shadow:0 0 0 1px rgba(124,255,178,0.06) inset;}
+    .btn.danger{border-color:rgba(255,107,139,0.22); box-shadow:0 0 0 1px rgba(255,107,139,0.06) inset;}
+    .btn.warn{border-color:rgba(255,204,102,0.22); box-shadow:0 0 0 1px rgba(255,204,102,0.06) inset;}
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;
+    }
+    .pill{
+      padding:10px 10px; border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.05);
+      min-height:64px;
+    }
+    .pill .k{color:var(--muted); font-size:12px;}
+    .pill .v{margin-top:6px; font-size:14px;}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
+    .good{color:var(--good)} .bad{color:var(--bad)} .warnTxt{color:var(--warn)}
+    .sep{height:1px; background:rgba(255,255,255,0.10); margin:12px 0;}
+    .qTitle{font-size:16px; margin:0 0 8px;}
+    .meta{color:var(--muted); font-size:12px;}
+    .optList{display:grid; gap:10px; margin-top:12px;}
+    .opt{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.05);
+      border-radius:14px;
+      padding:10px 12px;
+      cursor:pointer;
+      transition:background .15s ease, border-color .15s ease, transform .05s ease;
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .opt:hover{background:rgba(255,255,255,0.07)}
+    .opt:active{transform:translateY(1px)}
+    .opt input{margin-top:3px}
+    .opt.correct{border-color:rgba(124,255,178,0.35); box-shadow:0 0 0 1px rgba(124,255,178,0.08) inset;}
+    .opt.wrong{border-color:rgba(255,107,139,0.35); box-shadow:0 0 0 1px rgba(255,107,139,0.08) inset;}
+    .explain{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--muted);
+      white-space:pre-line;
+    }
+    textarea{
+      width:100%; min-height:120px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:12px;
+      color:var(--ink);
+      padding:10px 12px;
+      outline:none;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:12px;
+    }
+    .small{font-size:12px; color:var(--muted)}
+
+/* ================= 手机刷题优化 ================= */
+
+/* 默认：隐藏底部答题栏 */
+
+/* 手机端显示底部栏 */
+@media (max-width: 640px){
+  main{
+    grid-template-columns: 1fr;
+  }
+
+/* 隐藏左侧关卡设置区（不是答题区） */
+#settingsPanel{
+  display: none;
+  }
+
+  .qTitle{
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .opt{
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+}
+/* ======== 答题操作栏：桌面 / 手机分离 ======== */
+
+/* 桌面端：按钮在题目下方 */
+.desktopOnly{
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* 手机端：隐藏桌面按钮 */
+@media (max-width: 640px){
+  .desktopOnly{
+    display: none;
+  }
+}
+
+/* 手机端：底部固定操作栏 */
+#mobileAnswerBar{
+  display: none;
+}
+
+@media (max-width: 640px){
+  #mobileAnswerBar{
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    padding: 12px 14px;
+    gap: 10px;
+    background: linear-gradient(180deg, rgba(18,26,51,0.85), rgba(18,26,51,0.95));
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  body{
+    padding-bottom: 90px;
+  }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1>中级经济师（工商管理）闯关答题</h1>
+    <span class="tag" id="tagStage">第 1 关</span>
+    <span class="tag" id="tagMode">闯关模式</span>
+  </div>
+  <div class="row">
+    <button class="btn warn" id="btnReview">错题复习</button>
+    <button class="btn" id="btnResetProgress">清空进度</button>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="settingsPanel">
+    <div class="hd"><h2>关卡设置</h2><span class="small mono" id="bankInfo"></span></div>
+    <div class="bd">
+      <div class="row">
+        <label class="small">每关题数</label>
+        <input id="perStage" type="number" min="5" max="50" step="1" value="10" style="width:90px">
+        <label class="small">过关分数</label>
+        <input id="passScore" type="number" min="50" max="100" step="5" value="70" style="width:90px">
+        <label class="small">限时（分钟）</label>
+        <input id="timeLimit" type="number" min="0" max="120" step="5" value="0" style="width:90px">
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row">
+        <button class="btn primary" id="btnStart">开始/继续</button>
+        <button class="btn" id="btnSkip">跳过本题</button>
+
+      </div>
+
+      <div class="kpi">
+        <div class="pill">
+          <div class="k">本关进度</div>
+          <div class="v mono" id="kpiProgress">0 / 0</div>
+        </div>
+        <div class="pill">
+          <div class="k">本关得分</div>
+          <div class="v mono" id="kpiScore">0</div>
+        </div>
+        <div class="pill">
+          <div class="k">连对奖励</div>
+          <div class="v mono" id="kpiStreak">0</div>
+        </div>
+        <div class="pill">
+          <div class="k">剩余时间</div>
+          <div class="v mono" id="kpiTime">∞</div>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="small">
+        题库粘贴入口（可选）：把你的题库 JSON 粘到下面，然后点“导入题库”。<br>
+        <span class="warnTxt">注意：这里不联网，题库只保存在你的浏览器本地。</span>
+      </div>
+      <div style="margin-top:8px;">
+        <textarea id="bankInput" placeholder='粘贴题库 JSON，例如：[{ "id":"Q1", "type":"single", "stem":"...", "options":["A...","B..."], "answer":[0], "explain":"..." , "tags":["战略"] }]' ></textarea>
+        <div class="row" style="margin-top:8px;">
+          <button class="btn" id="btnImport">导入题库</button>
+          <button class="btn" id="btnExportWrong">导出错题 JSON</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="card" id="controlPanel">
+    <div class="hd"><h2>答题区</h2><span class="small mono" id="qMeta">—</span></div>
+    <div class="bd">
+    <p class="qTitle" id="qStem">点击“开始/继续”开始闯关</p>
+    <div class="meta" id="qTags"></div>
+    <div class="optList" id="optList"></div>
+      <div class="explain" id="explainBox" style="display:none;"></div>
+    </div>
+<!-- 桌面端：答题区下方操作按钮 -->
+<div class="answerBar desktopOnly">
+  <button class="btn primary" id="btnSubmitDesktop" disabled style="flex:1">
+    提交
+  </button>
+  <button class="btn" id="btnNextDesktop" disabled style="flex:1">
+    下一题
+  </button>
+</div>
+  </section>
+</main>
+
+<!-- 底部固定答题操作栏（必须放在 body 直系下） -->
+<div class="answerBar" id="mobileAnswerBar">
+  <!-- ★ 手机端专用：开始/继续 -->
+  <button class="btn warn" id="btnStartMobile" style="flex:1">
+    开始 / 继续
+  </button>
+
+  <button class="btn primary" id="btnSubmit" disabled style="flex:1">
+    提交
+  </button>
+  <button class="btn" id="btnNext" disabled style="flex:1">
+    下一题
+  </button>
+</div>
+
+<script>
+/** ==========================
+ *  题库格式说明（每题一个对象）
+ *  {
+ *    id: "唯一ID",
+ *    type: "single" | "multi",   // 单选/多选；判断可用 single + 两个选项
+ *    stem: "题干",
+ *    options: ["选项A", "选项B", ...],
+ *    answer: [0] 或 [1,3],       // 正确选项索引（从0开始）
+ *    explain: "解析（可选）",
+ *    tags: ["战略","营销"]       // 可选
+ *  }
+ * ========================== */
+
+/* ✅ 这里是示例题库：你换成你的题库即可 */
+let QUESTION_BANK = [
+  {
+    "id":"GS-MICRO-001",
+    "type":"single",
+    "stem":"在需求曲线不变的情况下，下列哪一因素会导致商品价格上升、均衡数量下降？",
+    "options":["供给增加","供给减少","需求增加","需求减少"],
+    "answer":[1],
+    "explain":"供给减少会在需求不变的情况下导致价格上升、均衡数量下降。",
+    "tags":["供求理论","高频"]
+  },
+  {
+    "id":"GS-MICRO-002",
+    "type":"single",
+    "stem":"需求曲线向右上方移动，表示：",
+    "options":["需求量增加","需求量减少","需求增加","需求减少"],
+    "answer":[2],
+    "explain":"需求曲线整体移动表示需求本身发生变化，而不是价格变动引起的需求量变化。",
+    "tags":["需求曲线","基础"]
+  },
+  {
+    "id":"GS-MICRO-003",
+    "type":"single",
+    "stem":"下列因素中，不会导致需求曲线移动的是：",
+    "options":["消费者收入变化","相关商品价格变化","消费者偏好变化","本商品价格变化"],
+    "answer":[3],
+    "explain":"本商品价格变化只会引起需求量变化，不会导致需求曲线移动。",
+    "tags":["需求决定因素","易错"]
+  },
+  {
+    "id":"GS-MICRO-004",
+    "type":"single",
+    "stem":"如果某种商品的需求价格弹性大于 1，则该商品需求属于：",
+    "options":["完全无弹性","缺乏弹性","单位弹性","富有弹性"],
+    "answer":[3],
+    "explain":"需求价格弹性大于 1，说明价格变动引起的需求量变动幅度更大，需求富有弹性。",
+    "tags":["需求弹性","计算理解"]
+  },
+  {
+    "id":"GS-MICRO-005",
+    "type":"single",
+    "stem":"当需求价格弹性等于 1 时，价格变动会使销售收入：",
+    "options":["增加","减少","不变","不确定"],
+    "answer":[2],
+    "explain":"单位弹性条件下，价格变动引起的收入变化相互抵消，总收入不变。",
+    "tags":["需求弹性","高频"]
+  },
+  {
+    "id":"GS-MICRO-006",
+    "type":"single",
+    "stem":"下列商品中，一般需求价格弹性最大的是：",
+    "options":["生活必需品","奢侈品","短期必需品","低价商品"],
+    "answer":[1],
+    "explain":"奢侈品可替代性强，对价格变化敏感，需求价格弹性较大。",
+    "tags":["需求弹性","理解"]
+  },
+  {
+    "id":"GS-MICRO-007",
+    "type":"single",
+    "stem":"供给价格弹性主要取决于：",
+    "options":["消费者偏好","生产周期长短","商品用途","收入水平"],
+    "answer":[1],
+    "explain":"生产周期越长，短期内调整供给越困难，供给弹性越小。",
+    "tags":["供给弹性","基础"]
+  },
+  {
+    "id":"GS-MICRO-008",
+    "type":"single",
+    "stem":"边际效用递减规律说明：",
+    "options":["总效用递减","平均效用递减","边际效用随消费增加而递减","效用恒定"],
+    "answer":[2],
+    "explain":"边际效用递减是指在一定时间内，连续消费同一种商品，新增一单位商品带来的效用逐渐减少。",
+    "tags":["效用理论","核心"]
+  },
+  {
+    "id":"GS-MICRO-009",
+    "type":"single",
+    "stem":"消费者实现效用最大化的条件是：",
+    "options":["总效用最大","边际效用为零","边际效用与价格之比相等","价格最低"],
+    "answer":[2],
+    "explain":"效用最大化条件是各商品的边际效用与价格之比相等。",
+    "tags":["消费者行为","高频"]
+  },
+  {
+    "id":"GS-MICRO-010",
+    "type":"single",
+    "stem":"无差异曲线的特点不包括：",
+    "options":["向右下方倾斜","彼此不相交","凹向原点","可以相交"],
+    "answer":[3],
+    "explain":"无差异曲线之间不能相交，否则违背偏好一致性。",
+    "tags":["无差异曲线","易错"]
+  },
+
+  {
+    "id":"GS-MICRO-011",
+    "type":"multiple",
+    "stem":"影响需求价格弹性的因素包括：",
+    "options":["替代品的多寡","商品用途数量","商品在消费者支出中的比重","生产技术水平"],
+    "answer":[0,1,2],
+    "explain":"需求弹性与替代品、用途、支出比重有关，与生产技术无直接关系。",
+    "tags":["需求弹性","多选"]
+  },
+  {
+    "id":"GS-MICRO-012",
+    "type":"multiple",
+    "stem":"下列属于消费者偏好假设内容的有：",
+    "options":["完全性","可传递性","理性选择","价格约束"],
+    "answer":[0,1,2],
+    "explain":"消费者偏好假设包括完全性、可传递性和理性，不包括价格约束。",
+    "tags":["消费者理论","多选"]
+  },
+  {
+    "id":"GS-MICRO-013",
+    "type":"single",
+    "stem":"等产量曲线表示：",
+    "options":["成本相等的投入组合","产量相等的投入组合","利润相等的投入组合","效用相等的消费组合"],
+    "answer":[1],
+    "explain":"等产量曲线表示在技术条件一定下，能够生产相同产量的各种要素投入组合。",
+    "tags":["生产理论","基础"]
+  },
+  {
+    "id":"GS-MICRO-014",
+    "type":"single",
+    "stem":"边际技术替代率递减说明：",
+    "options":["两要素完全替代","要素不可替代","一种要素替代另一种要素的能力递减","产量递减"],
+    "answer":[2],
+    "explain":"边际技术替代率递减是等产量曲线凸向原点的原因。",
+    "tags":["生产函数","核心"]
+  },
+  {
+    "id":"GS-MICRO-015",
+    "type":"single",
+    "stem":"规模报酬递增意味着：",
+    "options":["投入增加，产出同比例增加","投入增加，产出小于同比例增加","投入增加，产出大于同比例增加","产出不变"],
+    "answer":[2],
+    "explain":"规模报酬递增指投入要素按比例增加，产出增加幅度更大。",
+    "tags":["规模报酬","高频"]
+  },
+
+  {
+    "id":"GS-MICRO-016",
+    "type":"multiple",
+    "stem":"下列属于短期成本的有：",
+    "options":["固定成本","变动成本","平均成本","长期平均成本"],
+    "answer":[0,1,2],
+    "explain":"短期中存在固定成本，长期不存在固定成本。",
+    "tags":["成本理论","多选"]
+  },
+  {
+    "id":"GS-MICRO-017",
+    "type":"single",
+    "stem":"边际成本曲线与平均成本曲线的关系是：",
+    "options":["始终高于平均成本","始终低于平均成本","在平均成本最低点相交","不相交"],
+    "answer":[2],
+    "explain":"边际成本曲线在平均成本最低点与其相交。",
+    "tags":["成本曲线","经典考点"]
+  },
+  {
+    "id":"GS-MICRO-018",
+    "type":"single",
+    "stem":"完全竞争市场的特征不包括：",
+    "options":["大量买者和卖者","产品完全同质","厂商可以控制价格","信息完全"],
+    "answer":[2],
+    "explain":"完全竞争市场中厂商是价格接受者，不能控制价格。",
+    "tags":["市场结构","高频"]
+  },
+  {
+    "id":"GS-MICRO-019",
+    "type":"single",
+    "stem":"完全竞争厂商实现利润最大化的条件是：",
+    "options":["MR=MC","AR=AC","P=AC","TR最大"],
+    "answer":[0],
+    "explain":"利润最大化的一般条件是边际收益等于边际成本。",
+    "tags":["厂商理论","核心"]
+  },
+  {
+    "id":"GS-MICRO-020",
+    "type":"single",
+    "stem":"垄断市场与完全竞争市场的根本区别在于：",
+    "options":["产品差异","需求弹性","市场进入壁垒","企业规模"],
+    "answer":[2],
+    "explain":"垄断市场存在较高进入壁垒，是根本特征。",
+    "tags":["市场结构","理解"]
+  },
+
+  {
+    "id":"GS-MICRO-021",
+    "type":"multiple",
+    "stem":"下列属于市场失灵情形的有：",
+    "options":["外部性","公共物品","垄断","完全竞争"],
+    "answer":[0,1,2],
+    "explain":"外部性、公共物品和垄断都会导致市场配置资源失灵。",
+    "tags":["市场失灵","多选"]
+  },
+
+  {
+    "id":"GS-MICRO-022",
+    "type":"material",
+    "stem":"某城市出租车行业实行政府定价，价格长期低于市场均衡价格，导致高峰期打车困难。部分司机选择拒载或绕路，消费者投诉增加。",
+    "subQuestions":[
+      {
+        "id":"GS-MICRO-022-1",
+        "type":"single",
+        "stem":"该价格政策属于：",
+        "options":["最高限价","最低限价","政府指导价","市场价"],
+        "answer":[0],
+        "explain":"政府将价格限制在均衡价格以下，属于最高限价。",
+        "tags":["价格管制","情景题"]
+      },
+      {
+        "id":"GS-MICRO-022-2",
+        "type":"single",
+        "stem":"高峰期打车困难的直接原因是：",
+        "options":["需求减少","供给减少","供不应求","需求曲线左移"],
+        "answer":[2],
+        "explain":"价格低于均衡价格时，需求大于供给，出现供不应求。",
+        "tags":["供求分析","情景题"]
+      },
+      {
+        "id":"GS-MICRO-022-3",
+        "type":"multiple",
+        "stem":"该政策可能带来的后果包括：",
+        "options":["资源错配","黑市交易","服务质量下降","需求完全消失"],
+        "answer":[0,1,2],
+        "explain":"价格管制可能引发资源错配、黑市和服务质量下降。",
+        "tags":["政府干预","情景多选"]
+      }
+    ]
+  },
+
+ {
+    "id":"GS-MACRO-001",
+    "type":"single",
+    "stem":"宏观经济学研究的核心问题是：",
+    "options":["资源配置效率","价格形成机制","国民经济总体运行","企业行为"],
+    "answer":[2],
+    "explain":"宏观经济学研究国民经济的总体运行状况，如增长、就业、物价等。",
+    "tags":["宏观经济","基础"]
+  },
+  {
+    "id":"GS-MACRO-002",
+    "type":"single",
+    "stem":"国内生产总值（GDP）是指一定时期内一国境内：",
+    "options":["所有最终产品和服务的市场价值","所有产品和服务的总产值","中间产品和最终产品价值之和","国民收入总和"],
+    "answer":[0],
+    "explain":"GDP 只包括最终产品和服务的市场价值，避免重复计算。",
+    "tags":["GDP","高频"]
+  },
+  {
+    "id":"GS-MACRO-003",
+    "type":"single",
+    "stem":"下列项目中，不计入 GDP 的是：",
+    "options":["政府购买服务","居民购买新房","企业购买原材料","出口商品"],
+    "answer":[2],
+    "explain":"原材料属于中间产品，不计入 GDP。",
+    "tags":["GDP核算","易错"]
+  },
+  {
+    "id":"GS-MACRO-004",
+    "type":"single",
+    "stem":"按支出法计算 GDP，不包括：",
+    "options":["消费","投资","政府支出","转移支付"],
+    "answer":[3],
+    "explain":"转移支付不形成当期产出，不计入 GDP。",
+    "tags":["GDP核算","高频"]
+  },
+  {
+    "id":"GS-MACRO-005",
+    "type":"single",
+    "stem":"名义 GDP 与实际 GDP 的主要区别在于是否：",
+    "options":["考虑人口因素","考虑价格因素","考虑汇率因素","考虑税收因素"],
+    "answer":[1],
+    "explain":"实际 GDP 剔除了价格变动因素，更能反映真实产出水平。",
+    "tags":["GDP","理解"]
+  },
+  {
+    "id":"GS-MACRO-006",
+    "type":"single",
+    "stem":"经济增长通常是指：",
+    "options":["GDP 总量增加","人均 GDP 增加","名义 GDP 增加","财政收入增加"],
+    "answer":[1],
+    "explain":"经济增长更强调人均产出的持续增长。",
+    "tags":["经济增长","核心"]
+  },
+  {
+    "id":"GS-MACRO-007",
+    "type":"single",
+    "stem":"潜在 GDP 反映的是：",
+    "options":["充分就业条件下的产出水平","实际产出水平","短期最大产出","名义产出"],
+    "answer":[0],
+    "explain":"潜在 GDP 是在资源充分利用、充分就业下的产出水平。",
+    "tags":["潜在产出","理解"]
+  },
+  {
+    "id":"GS-MACRO-008",
+    "type":"single",
+    "stem":"经济周期中，失业率最高的阶段通常是：",
+    "options":["繁荣","衰退","萧条","复苏"],
+    "answer":[2],
+    "explain":"萧条阶段经济活动最低，失业率最高。",
+    "tags":["经济周期","高频"]
+  },
+  {
+    "id":"GS-MACRO-009",
+    "type":"single",
+    "stem":"反映经济波动最直接的指标是：",
+    "options":["GDP","通货膨胀率","失业率","利率"],
+    "answer":[0],
+    "explain":"GDP 的波动直接反映经济总体运行状况。",
+    "tags":["宏观指标","基础"]
+  },
+  {
+    "id":"GS-MACRO-010",
+    "type":"single",
+    "stem":"凯恩斯认为，决定短期国民收入水平的主要因素是：",
+    "options":["供给","投资","总需求","技术进步"],
+    "answer":[2],
+    "explain":"凯恩斯理论强调总需求对经济运行的决定作用。",
+    "tags":["凯恩斯理论","高频"]
+  },
+
+  {
+    "id":"GS-MACRO-011",
+    "type":"single",
+    "stem":"消费函数表明，消费水平主要取决于：",
+    "options":["利率","收入水平","价格水平","财富总量"],
+    "answer":[1],
+    "explain":"凯恩斯消费函数认为消费是收入的函数。",
+    "tags":["消费理论","核心"]
+  },
+  {
+    "id":"GS-MACRO-012",
+    "type":"single",
+    "stem":"边际消费倾向是指：",
+    "options":["消费占收入的比例","收入增加引起的消费增加量","消费增加引起的收入增加量","平均消费水平"],
+    "answer":[1],
+    "explain":"边际消费倾向表示每增加一单位收入中用于消费的部分。",
+    "tags":["边际消费倾向","高频"]
+  },
+  {
+    "id":"GS-MACRO-013",
+    "type":"single",
+    "stem":"在简单凯恩斯模型中，投资增加会引起国民收入：",
+    "options":["同幅度增加","小于投资增加量","按乘数倍数增加","不变"],
+    "answer":[2],
+    "explain":"投资通过乘数效应放大，对收入产生倍数影响。",
+    "tags":["乘数效应","高频"]
+  },
+  {
+    "id":"GS-MACRO-014",
+    "type":"single",
+    "stem":"投资乘数大小主要取决于：",
+    "options":["边际储蓄倾向","边际消费倾向","利率水平","政府支出"],
+    "answer":[1],
+    "explain":"边际消费倾向越大，乘数效应越大。",
+    "tags":["乘数效应","理解"]
+  },
+  {
+    "id":"GS-MACRO-015",
+    "type":"single",
+    "stem":"IS 曲线表示：",
+    "options":["货币市场均衡","产品市场均衡","劳动市场均衡","国际收支均衡"],
+    "answer":[1],
+    "explain":"IS 曲线表示使产品市场达到均衡的利率与收入组合。",
+    "tags":["IS-LM模型","核心"]
+  },
+
+  {
+    "id":"GS-MACRO-016",
+    "type":"single",
+    "stem":"LM 曲线表示：",
+    "options":["货币供给等于货币需求","投资等于储蓄","财政收支平衡","进出口平衡"],
+    "answer":[0],
+    "explain":"LM 曲线表示货币市场达到均衡的利率与收入组合。",
+    "tags":["IS-LM模型","核心"]
+  },
+  {
+    "id":"GS-MACRO-017",
+    "type":"single",
+    "stem":"扩张性财政政策的主要措施是：",
+    "options":["减少支出、增加税收","增加支出、减少税收","提高利率","减少货币供给"],
+    "answer":[1],
+    "explain":"扩张性财政政策通过刺激总需求来促进经济增长。",
+    "tags":["财政政策","高频"]
+  },
+  {
+    "id":"GS-MACRO-018",
+    "type":"single",
+    "stem":"紧缩性货币政策通常会导致：",
+    "options":["利率上升","投资增加","货币供给增加","通货膨胀加剧"],
+    "answer":[0],
+    "explain":"紧缩性货币政策通过减少货币供给使利率上升。",
+    "tags":["货币政策","理解"]
+  },
+  {
+    "id":"GS-MACRO-019",
+    "type":"single",
+    "stem":"公开市场业务是指中央银行：",
+    "options":["调整存款准备金率","调整再贴现率","买卖政府证券","控制信贷规模"],
+    "answer":[2],
+    "explain":"公开市场业务通过买卖政府证券调节货币供应量。",
+    "tags":["货币政策工具","高频"]
+  },
+  {
+    "id":"GS-MACRO-020",
+    "type":"single",
+    "stem":"通货膨胀的实质是：",
+    "options":["物价上涨","货币贬值","供给不足","需求过剩"],
+    "answer":[1],
+    "explain":"通货膨胀本质是货币购买力下降。",
+    "tags":["通货膨胀","核心"]
+  },
+
+  {
+    "id":"GS-MACRO-021",
+    "type":"multiple",
+    "stem":"引起需求拉上型通货膨胀的因素包括：",
+    "options":["财政支出增加","货币供给过多","生产成本上升","投资过度"],
+    "answer":[0,1,3],
+    "explain":"需求拉上型通胀源于总需求过度扩张。",
+    "tags":["通货膨胀","多选"]
+  },
+  {
+    "id":"GS-MACRO-022",
+    "type":"single",
+    "stem":"成本推动型通货膨胀通常伴随：",
+    "options":["经济高速增长","失业率下降","经济停滞","需求扩张"],
+    "answer":[2],
+    "explain":"成本推动型通胀常与经济停滞并存。",
+    "tags":["通货膨胀","理解"]
+  },
+  {
+    "id":"GS-MACRO-023",
+    "type":"single",
+    "stem":"失业率是指：",
+    "options":["失业人口占总人口比例","失业人口占劳动力比例","失业人口占就业人口比例","就业人口占总人口比例"],
+    "answer":[1],
+    "explain":"失业率 = 失业人口 ÷ 劳动力人口。",
+    "tags":["失业","基础"]
+  },
+  {
+    "id":"GS-MACRO-024",
+    "type":"single",
+    "stem":"摩擦性失业产生的主要原因是：",
+    "options":["经济衰退","技术进步","信息不完全","工资刚性"],
+    "answer":[2],
+    "explain":"摩擦性失业源于劳动力市场信息不完全和流动性。",
+    "tags":["失业类型","高频"]
+  },
+  {
+    "id":"GS-MACRO-025",
+    "type":"single",
+    "stem":"自然失业率不包括：",
+    "options":["摩擦性失业","结构性失业","周期性失业","自愿失业"],
+    "answer":[2],
+    "explain":"周期性失业由经济波动引起，不属于自然失业率。",
+    "tags":["失业","易错"]
+  },
+
+  {
+    "id":"GS-MACRO-026",
+    "type":"material",
+    "stem":"某国在经济下行阶段，政府决定扩大财政支出并降低税率，同时中央银行降低利率以刺激投资和消费。",
+    "subQuestions":[
+      {
+        "id":"GS-MACRO-026-1",
+        "type":"single",
+        "stem":"政府采取的财政政策属于：",
+        "options":["紧缩性财政政策","中性财政政策","扩张性财政政策","结构性财政政策"],
+        "answer":[2],
+        "explain":"增加支出、降低税率属于扩张性财政政策。",
+        "tags":["财政政策","情景题"]
+      },
+      {
+        "id":"GS-MACRO-026-2",
+        "type":"single",
+        "stem":"中央银行采取的货币政策措施属于：",
+        "options":["紧缩性货币政策","扩张性货币政策","中性货币政策","选择性政策"],
+        "answer":[1],
+        "explain":"降低利率属于扩张性货币政策。",
+        "tags":["货币政策","情景题"]
+      },
+      {
+        "id":"GS-MACRO-026-3",
+        "type":"multiple",
+        "stem":"上述政策组合的主要目标包括：",
+        "options":["刺激总需求","促进经济复苏","降低失业率","抑制通货膨胀"],
+        "answer":[0,1,2],
+        "explain":"扩张性政策组合旨在刺激需求、促进增长和就业。",
+        "tags":["宏观调控","情景多选"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-MICRO-023",
+    "type":"single",
+    "stem":"在其他条件不变的情况下，消费者收入增加对低档商品的需求将：",
+    "options":["增加","减少","不变","先增后减"],
+    "answer":[1],
+    "explain":"低档商品的需求量随收入增加而减少。",
+    "tags":["需求类型","高频"]
+  },
+  {
+    "id":"GS-MICRO-024",
+    "type":"single",
+    "stem":"下列哪种情况最可能导致供给曲线向左移动？",
+    "options":["生产技术进步","生产成本上升","政府补贴增加","生产者数量增加"],
+    "answer":[1],
+    "explain":"生产成本上升会减少供给，导致供给曲线左移。",
+    "tags":["供给曲线","理解"]
+  },
+  {
+    "id":"GS-MICRO-025",
+    "type":"single",
+    "stem":"交叉价格弹性为正，说明两种商品之间是：",
+    "options":["互补品","替代品","独立品","劣等品"],
+    "answer":[1],
+    "explain":"交叉价格弹性为正表示一种商品价格上升会引起另一种商品需求增加，属于替代品。",
+    "tags":["弹性","高频"]
+  },
+  {
+    "id":"GS-MICRO-026",
+    "type":"single",
+    "stem":"收入弹性为负的商品是：",
+    "options":["必需品","奢侈品","正常品","低档品"],
+    "answer":[3],
+    "explain":"低档品的需求量随收入增加而减少，收入弹性为负。",
+    "tags":["弹性","易错"]
+  },
+  {
+    "id":"GS-MICRO-027",
+    "type":"single",
+    "stem":"消费者剩余是指：",
+    "options":["消费者愿意支付价格与实际支付价格之间的差额","企业利润","社会福利","生产者收益"],
+    "answer":[0],
+    "explain":"消费者剩余反映消费者从交易中获得的额外利益。",
+    "tags":["消费者剩余","核心"]
+  },
+  {
+    "id":"GS-MICRO-028",
+    "type":"single",
+    "stem":"生产者剩余是指：",
+    "options":["市场价格与最低愿意出售价格之间的差额","企业总成本","社会总福利","消费者收益"],
+    "answer":[0],
+    "explain":"生产者剩余体现生产者因市场价格高于最低供给价格而获得的收益。",
+    "tags":["生产者剩余","基础"]
+  },
+  {
+    "id":"GS-MICRO-029",
+    "type":"single",
+    "stem":"完全竞争市场中，长期均衡时企业：",
+    "options":["获得超额利润","发生亏损","经济利润为零","边际收益为零"],
+    "answer":[2],
+    "explain":"长期均衡下，完全竞争企业只能获得正常利润，经济利润为零。",
+    "tags":["完全竞争","高频"]
+  },
+  {
+    "id":"GS-MICRO-030",
+    "type":"single",
+    "stem":"垄断企业的需求曲线与边际收益曲线的关系是：",
+    "options":["完全重合","边际收益曲线在需求曲线之上","边际收益曲线在需求曲线之下","没有关系"],
+    "answer":[2],
+    "explain":"垄断企业边际收益曲线位于需求曲线下方。",
+    "tags":["垄断市场","核心"]
+  },
+  {
+    "id":"GS-MICRO-031",
+    "type":"single",
+    "stem":"价格歧视能够成立的前提条件不包括：",
+    "options":["市场可分割","消费者需求弹性不同","企业拥有市场势力","产品必须差异化"],
+    "answer":[3],
+    "explain":"价格歧视可以发生在同质产品市场。",
+    "tags":["价格歧视","易错"]
+  },
+  {
+    "id":"GS-MICRO-032",
+    "type":"single",
+    "stem":"帕累托改进是指：",
+    "options":["至少一人受益且无人受损","社会福利最大化","收入分配公平","效率与公平兼顾"],
+    "answer":[0],
+    "explain":"帕累托改进要求在不使任何人变差的情况下使至少一人变好。",
+    "tags":["福利经济学","高频"]
+  },
+
+  {
+    "id":"GS-MICRO-033",
+    "type":"multiple",
+    "stem":"下列属于政府干预市场理由的有：",
+    "options":["外部性存在","公共物品供给不足","信息不对称","完全竞争"],
+    "answer":[0,1,2],
+    "explain":"外部性、公共物品和信息不对称都会导致市场失灵。",
+    "tags":["政府干预","多选"]
+  },
+  {
+    "id":"GS-MICRO-034",
+    "type":"multiple",
+    "stem":"公共物品的特征包括：",
+    "options":["非排他性","非竞争性","可分割性","价格机制有效"],
+    "answer":[0,1],
+    "explain":"公共物品具有非排他性和非竞争性。",
+    "tags":["公共物品","高频"]
+  },
+  {
+    "id":"GS-MICRO-035",
+    "type":"single",
+    "stem":"负外部性通常会导致：",
+    "options":["产量过低","产量过高","价格过高","价格过低"],
+    "answer":[1],
+    "explain":"负外部性使社会成本高于私人成本，市场产量通常过高。",
+    "tags":["外部性","理解"]
+  },
+  {
+    "id":"GS-MICRO-036",
+    "type":"single",
+    "stem":"解决外部性问题的市场化手段是：",
+    "options":["政府管制","税收调节","科斯定理","价格上限"],
+    "answer":[2],
+    "explain":"科斯定理强调在产权明确、交易成本为零时，通过协商解决外部性。",
+    "tags":["外部性","高频"]
+  },
+  {
+    "id":"GS-MICRO-037",
+    "type":"single",
+    "stem":"信息不对称可能导致的市场结果是：",
+    "options":["完全竞争","逆向选择","资源最优配置","价格均衡"],
+    "answer":[1],
+    "explain":"信息不对称容易引发逆向选择和道德风险。",
+    "tags":["信息不对称","核心"]
+  },
+  {
+    "id":"GS-MICRO-038",
+    "type":"single",
+    "stem":"“劣币驱逐良币”现象反映的是：",
+    "options":["外部性","公共物品问题","逆向选择","道德风险"],
+    "answer":[2],
+    "explain":"信息不对称下，质量差的产品会将质量好的产品挤出市场。",
+    "tags":["逆向选择","高频"]
+  },
+  {
+    "id":"GS-MICRO-039",
+    "type":"single",
+    "stem":"最低工资制度可能带来的直接影响是：",
+    "options":["就业增加","失业减少","失业增加","工资完全市场化"],
+    "answer":[2],
+    "explain":"最低工资高于均衡工资时，可能导致劳动力供给大于需求。",
+    "tags":["价格管制","理解"]
+  },
+  {
+    "id":"GS-MICRO-040",
+    "type":"single",
+    "stem":"从效率角度看，政府对垄断企业实施价格管制的主要目的在于：",
+    "options":["提高财政收入","限制企业规模","减少福利损失","促进企业利润最大化"],
+    "answer":[2],
+    "explain":"价格管制有助于减少垄断导致的社会福利损失。",
+    "tags":["垄断","福利分析"]
+  },
+  {
+    "id":"GS-MICRO-041",
+    "type":"multiple",
+    "stem":"下列属于市场失灵表现形式的有：",
+    "options":["垄断定价","外部成本存在","公共物品供给不足","价格机制失效"],
+    "answer":[0,1,2,3],
+    "explain":"以上均属于市场无法有效配置资源的情形。",
+    "tags":["市场失灵","综合"]
+  },
+  {
+    "id":"GS-MICRO-042",
+    "type":"single",
+    "stem":"社会总福利最大化通常发生在：",
+    "options":["垄断市场","完全竞争市场","价格管制市场","信息不对称市场"],
+    "answer":[1],
+    "explain":"完全竞争市场在理想条件下实现资源配置效率最大化。",
+    "tags":["福利经济学","总结"]
+  },
+  {
+    "id":"GS-MACRO-027",
+    "type":"single",
+    "stem":"经济增长与经济发展的根本区别在于，经济发展更强调：",
+    "options":["产出规模扩大","数量增长","结构优化和福利改善","GDP 增长率"],
+    "answer":[2],
+    "explain":"经济发展不仅关注数量增长，更强调结构、质量和社会福利。",
+    "tags":["经济增长","高频"]
+  },
+  {
+    "id":"GS-MACRO-028",
+    "type":"single",
+    "stem":"反映一国居民生活水平最常用的指标是：",
+    "options":["GDP 总量","名义 GDP","人均 GDP","潜在 GDP"],
+    "answer":[2],
+    "explain":"人均 GDP 能更好反映平均生活水平。",
+    "tags":["宏观指标","基础"]
+  },
+  {
+    "id":"GS-MACRO-029",
+    "type":"single",
+    "stem":"通货紧缩的主要特征是：",
+    "options":["物价持续上涨","物价持续下降","货币供给过多","需求过热"],
+    "answer":[1],
+    "explain":"通货紧缩表现为总体物价水平持续下降。",
+    "tags":["通货紧缩","易错"]
+  },
+  {
+    "id":"GS-MACRO-030",
+    "type":"single",
+    "stem":"菲利普斯曲线最初揭示了：",
+    "options":["通胀与经济增长关系","通胀与失业率关系","利率与投资关系","货币与产出关系"],
+    "answer":[1],
+    "explain":"菲利普斯曲线反映通货膨胀率与失业率之间的关系。",
+    "tags":["菲利普斯曲线","高频"]
+  },
+  {
+    "id":"GS-MACRO-031",
+    "type":"single",
+    "stem":"长期菲利普斯曲线的形态通常是：",
+    "options":["向下倾斜","向上倾斜","水平线","垂直线"],
+    "answer":[3],
+    "explain":"长期中通胀率不影响失业率，曲线为垂直线。",
+    "tags":["菲利普斯曲线","核心"]
+  },
+  {
+    "id":"GS-MACRO-032",
+    "type":"single",
+    "stem":"通货膨胀对收入分配的影响是：",
+    "options":["有利于债权人","有利于债务人","对双方无影响","完全公平"],
+    "answer":[1],
+    "explain":"通胀降低货币实际价值，有利于债务人、不利于债权人。",
+    "tags":["通胀影响","理解"]
+  },
+  {
+    "id":"GS-MACRO-033",
+    "type":"single",
+    "stem":"经济过热时，政府最可能采取的政策组合是：",
+    "options":["扩张性财政+扩张性货币","紧缩性财政+紧缩性货币","扩张性财政+紧缩性货币","紧缩性财政+扩张性货币"],
+    "answer":[1],
+    "explain":"经济过热时应抑制总需求。",
+    "tags":["宏观调控","高频"]
+  },
+  {
+    "id":"GS-MACRO-034",
+    "type":"single",
+    "stem":"货币政策传导中，利率渠道的核心是：",
+    "options":["货币供给变化","利率变化影响投资","财政支出变化","价格水平变化"],
+    "answer":[1],
+    "explain":"利率变化通过影响投资和消费传导至总需求。",
+    "tags":["货币政策","理解"]
+  },
+  {
+    "id":"GS-MACRO-035",
+    "type":"single",
+    "stem":"货币政策相对于财政政策的主要优势在于：",
+    "options":["见效慢","时滞较短","政治干预少","作用范围窄"],
+    "answer":[1],
+    "explain":"货币政策通常实施灵活、见效较快。",
+    "tags":["政策比较","高频"]
+  },
+  {
+    "id":"GS-MACRO-036",
+    "type":"single",
+    "stem":"“自动稳定器”主要体现在：",
+    "options":["货币供给自动调节","税收和转移支付","政府投资计划","价格管制"],
+    "answer":[1],
+    "explain":"税收和转移支付能随经济波动自动调节总需求。",
+    "tags":["财政政策","核心"]
+  },
+
+  {
+    "id":"GS-MACRO-037",
+    "type":"multiple",
+    "stem":"下列属于宏观经济调控目标的有：",
+    "options":["经济增长","充分就业","物价稳定","国际收支平衡"],
+    "answer":[0,1,2,3],
+    "explain":"四大宏观调控目标是经济增长、就业、物价和国际收支。",
+    "tags":["宏观目标","综合"]
+  },
+  {
+    "id":"GS-MACRO-038",
+    "type":"multiple",
+    "stem":"导致结构性失业的原因包括：",
+    "options":["产业结构变化","技术进步","劳动者技能不匹配","经济周期波动"],
+    "answer":[0,1,2],
+    "explain":"结构性失业源于结构变化，而非周期波动。",
+    "tags":["失业类型","多选"]
+  },
+  {
+    "id":"GS-MACRO-039",
+    "type":"single",
+    "stem":"滞胀是指：",
+    "options":["通胀与低失业并存","通缩与高失业并存","通胀与高失业并存","经济高速增长"],
+    "answer":[2],
+    "explain":"滞胀表现为高通胀与高失业并存。",
+    "tags":["宏观现象","高频"]
+  },
+  {
+    "id":"GS-MACRO-040",
+    "type":"single",
+    "stem":"供给学派主张刺激经济的主要手段是：",
+    "options":["扩大政府支出","减税","增加货币供给","提高最低工资"],
+    "answer":[1],
+    "explain":"供给学派强调减税以激励生产和投资。",
+    "tags":["经济学派","理解"]
+  },
+  {
+    "id":"GS-MACRO-041",
+    "type":"single",
+    "stem":"理性预期学派认为：",
+    "options":["政策长期有效","政策无效","政策短期无效","政策必然滞后"],
+    "answer":[1],
+    "explain":"理性预期学派认为系统性政策难以影响实际变量。",
+    "tags":["经济学派","易错"]
+  },
+  {
+    "id":"GS-MACRO-042",
+    "type":"single",
+    "stem":"国际收支平衡表中，经常账户不包括：",
+    "options":["货物贸易","服务贸易","投资收益","资本转移"],
+    "answer":[3],
+    "explain":"资本转移属于资本和金融账户。",
+    "tags":["国际收支","基础"]
+  },
+  {
+    "id":"GS-MACRO-043",
+    "type":"single",
+    "stem":"本币贬值通常会：",
+    "options":["抑制出口","促进出口","扩大进口","减少出口竞争力"],
+    "answer":[1],
+    "explain":"本币贬值有利于出口、抑制进口。",
+    "tags":["汇率","高频"]
+  },
+  {
+    "id":"GS-MACRO-044",
+    "type":"single",
+    "stem":"在开放经济中，资本大量流入可能导致：",
+    "options":["本币升值","本币贬值","出口增加","进口减少"],
+    "answer":[0],
+    "explain":"资本流入增加本币需求，推动本币升值。",
+    "tags":["开放经济","理解"]
+  },
+
+  {
+    "id":"GS-FIN-001",
+    "type":"single",
+    "stem":"财政的本质是：",
+    "options":["政府收入与支出的总和","国家分配关系","税收活动","公共资金运动"],
+    "answer":[1],
+    "explain":"财政本质是以国家为主体的分配关系。",
+    "tags":["财政基础","高频"]
+  },
+  {
+    "id":"GS-FIN-002",
+    "type":"single",
+    "stem":"财政支出的主要目标不包括：",
+    "options":["配置资源","调节收入分配","稳定经济","追求企业利润最大化"],
+    "answer":[3],
+    "explain":"财政不以企业利润最大化为目标。",
+    "tags":["财政职能","易错"]
+  },
+  {
+    "id":"GS-FIN-003",
+    "type":"single",
+    "stem":"公共财政最基本的职能是：",
+    "options":["收入分配","资源配置","经济稳定","社会管理"],
+    "answer":[1],
+    "explain":"资源配置是公共财政的首要职能。",
+    "tags":["财政职能","核心"]
+  },
+  {
+    "id":"GS-FIN-004",
+    "type":"single",
+    "stem":"下列支出中，属于转移性支出的是：",
+    "options":["政府投资基础设施","政府购买服务","社会保障支出","国防支出"],
+    "answer":[2],
+    "explain":"转移性支出不直接形成产出。",
+    "tags":["财政支出","高频"]
+  },
+  {
+    "id":"GS-FIN-005",
+    "type":"single",
+    "stem":"财政收入中最主要、最稳定的来源是：",
+    "options":["国有资产收益","政府性基金","税收","罚没收入"],
+    "answer":[2],
+    "explain":"税收是财政收入的主体。",
+    "tags":["财政收入","核心"]
+  },
+  {
+    "id":"GS-FIN-006",
+    "type":"single",
+    "stem":"税收的强制性主要体现在：",
+    "options":["依法征收","无偿征收","固定性","强制缴纳"],
+    "answer":[3],
+    "explain":"税收以法律形式强制征收。",
+    "tags":["税收特征","基础"]
+  },
+  {
+    "id":"GS-FIN-007",
+    "type":"single",
+    "stem":"直接税的主要特点是：",
+    "options":["易于转嫁","不易转嫁","税负隐蔽","由消费者承担"],
+    "answer":[1],
+    "explain":"直接税通常由纳税人直接承担。",
+    "tags":["税制","高频"]
+  },
+  {
+    "id":"GS-FIN-008",
+    "type":"single",
+    "stem":"下列税种中，属于流转税的是：",
+    "options":["个人所得税","企业所得税","增值税","财产税"],
+    "answer":[2],
+    "explain":"增值税是典型的流转税。",
+    "tags":["税种","核心"]
+  },
+  {
+    "id":"GS-FIN-009",
+    "type":"single",
+    "stem":"财政赤字是指：",
+    "options":["财政收入大于支出","财政支出大于收入","政府债务总额","税收不足"],
+    "answer":[1],
+    "explain":"财政赤字是支出超过收入的部分。",
+    "tags":["财政平衡","高频"]
+  },
+  {
+    "id":"GS-FIN-010",
+    "type":"single",
+    "stem":"弥补财政赤字的常用方式不包括：",
+    "options":["发行国债","增加税收","向中央银行借款","减少货币供给"],
+    "answer":[3],
+    "explain":"减少货币供给不是直接弥补财政赤字的方式。",
+    "tags":["财政赤字","易错"]
+  },
+ {
+    "id":"GS-FIN-011",
+    "type":"single",
+    "stem":"政府债务按举借主体划分，不包括：",
+    "options":["中央政府债务","地方政府债务","公共部门债务","私人部门债务"],
+    "answer":[3],
+    "explain":"政府债务仅指政府及公共部门债务，不包括私人部门。",
+    "tags":["政府债务","基础"]
+  },
+  {
+    "id":"GS-FIN-012",
+    "type":"single",
+    "stem":"衡量财政政策是否具有扩张性的重要指标是：",
+    "options":["财政赤字","税收总额","财政收入","政府债务余额"],
+    "answer":[0],
+    "explain":"扩张性财政政策通常伴随财政赤字扩大。",
+    "tags":["财政政策","高频"]
+  },
+  {
+    "id":"GS-FIN-013",
+    "type":"single",
+    "stem":"财政支出乘数效应表明：",
+    "options":["支出变化对收入有放大效应","支出变化对收入无影响","收入决定支出","税收决定支出"],
+    "answer":[0],
+    "explain":"财政支出通过乘数效应对国民收入产生放大影响。",
+    "tags":["财政乘数","核心"]
+  },
+  {
+    "id":"GS-FIN-014",
+    "type":"single",
+    "stem":"财政支出结构中，最能体现再分配功能的是：",
+    "options":["经济建设支出","行政管理支出","社会保障支出","国防支出"],
+    "answer":[2],
+    "explain":"社会保障支出直接影响收入再分配。",
+    "tags":["财政职能","理解"]
+  },
+  {
+    "id":"GS-FIN-015",
+    "type":"single",
+    "stem":"金融的本质是：",
+    "options":["货币流通","资金融通","信用活动","支付结算"],
+    "answer":[1],
+    "explain":"金融的本质是资金在不同主体之间的融通。",
+    "tags":["金融基础","核心"]
+  },
+  {
+    "id":"GS-FIN-016",
+    "type":"single",
+    "stem":"金融市场的基本功能不包括：",
+    "options":["资金融通","风险分散","价格发现","财政收入分配"],
+    "answer":[3],
+    "explain":"财政收入分配属于财政职能。",
+    "tags":["金融市场","基础"]
+  },
+  {
+    "id":"GS-FIN-017",
+    "type":"single",
+    "stem":"按期限划分，资本市场主要交易：",
+    "options":["一年以内显示工具","短期票据","长期金融工具","外汇"],
+    "answer":[2],
+    "explain":"资本市场交易期限较长的金融工具。",
+    "tags":["金融市场分类","高频"]
+  },
+  {
+    "id":"GS-FIN-018",
+    "type":"single",
+    "stem":"货币市场的典型特征是：",
+    "options":["期限短、流动性强","风险高","收益高","期限长"],
+    "answer":[0],
+    "explain":"货币市场工具期限短、流动性强、风险低。",
+    "tags":["货币市场","核心"]
+  },
+  {
+    "id":"GS-FIN-019",
+    "type":"single",
+    "stem":"商业银行最主要的负债业务是：",
+    "options":["发行债券","同业拆借","吸收存款","向央行借款"],
+    "answer":[2],
+    "explain":"存款是商业银行最主要的资金来源。",
+    "tags":["商业银行","高频"]
+  },
+  {
+    "id":"GS-FIN-020",
+    "type":"single",
+    "stem":"商业银行最基本的职能是：",
+    "options":["信用中介","支付中介","金融服务","风险管理"],
+    "answer":[0],
+    "explain":"商业银行最核心职能是信用中介。",
+    "tags":["商业银行","核心"]
+  },
+
+  {
+    "id":"GS-FIN-021",
+    "type":"single",
+    "stem":"中央银行区别于商业银行的根本特征是：",
+    "options":["盈利性","政策性","独立性","服务性"],
+    "answer":[1],
+    "explain":"中央银行不以盈利为目的，具有政策性。",
+    "tags":["中央银行","高频"]
+  },
+  {
+    "id":"GS-FIN-022",
+    "type":"single",
+    "stem":"中央银行的“银行的银行”职能主要体现在：",
+    "options":["对居民发放贷款","对企业发放贷款","为商业银行提供再贷款","吸收居民存款"],
+    "answer":[2],
+    "explain":"央行主要为商业银行提供资金支持。",
+    "tags":["中央银行职能","理解"]
+  },
+  {
+    "id":"GS-FIN-023",
+    "type":"single",
+    "stem":"存款准备金率提高，通常会导致：",
+    "options":["货币供给增加","货币供给减少","利率下降","投资增加"],
+    "answer":[1],
+    "explain":"提高准备金率会减少银行可贷资金。",
+    "tags":["货币政策工具","高频"]
+  },
+  {
+    "id":"GS-FIN-024",
+    "type":"single",
+    "stem":"金融监管的首要目标是：",
+    "options":["提高银行利润","防范系统性风险","扩大信贷规模","促进金融创新"],
+    "answer":[1],
+    "explain":"金融监管首要目标是维护金融体系稳定。",
+    "tags":["金融监管","核心"]
+  },
+  {
+    "id":"GS-FIN-025",
+    "type":"single",
+    "stem":"利率市场化的核心是：",
+    "options":["政府定价","央行定价","市场供求决定","银行协商决定"],
+    "answer":[2],
+    "explain":"利率市场化强调由市场供求形成利率。",
+    "tags":["利率","高频"]
+  },
+
+  {
+    "id":"GS-FIN-026",
+    "type":"multiple",
+    "stem":"财政政策的自动稳定器包括：",
+    "options":["累进所得税","失业救济","政府转移支付","公开市场操作"],
+    "answer":[0,1,2],
+    "explain":"自动稳定器主要体现在税收和转移支付。",
+    "tags":["财政政策","多选"]
+  },
+  {
+    "id":"GS-FIN-027",
+    "type":"multiple",
+    "stem":"金融市场按交易对象划分，包括：",
+    "options":["货币市场","资本市场","外汇市场","黄金市场"],
+    "answer":[0,1,2,3],
+    "explain":"以上均属于金融市场的重要组成部分。",
+    "tags":["金融市场","多选"]
+  },
+  {
+    "id":"GS-FIN-028",
+    "type":"multiple",
+    "stem":"中央银行的一般性货币政策工具包括：",
+    "options":["公开市场业务","存款准备金率","再贴现政策","窗口指导"],
+    "answer":[0,1,2],
+    "explain":"窗口指导属于选择性或道义性工具。",
+    "tags":["货币政策","多选"]
+  },
+
+  {
+    "id":"GS-FIN-029",
+    "type":"material",
+    "stem":"某国经济下行压力加大，政府实施减税政策，同时中央银行下调存款准备金率以增加市场流动性。",
+    "subQuestions":[
+      {
+        "id":"GS-FIN-029-1",
+        "type":"single",
+        "stem":"政府实施的财政政策属于：",
+        "options":["紧缩性财政政策","扩张性财政政策","中性财政政策","结构性财政政策"],
+        "answer":[1],
+        "explain":"减税属于扩张性财政政策。",
+        "tags":["财政政策","情景题"]
+      },
+      {
+        "id":"GS-FIN-029-2",
+        "type":"single",
+        "stem":"下调存款准备金率的直接效果是：",
+        "options":["减少货币供给","增加货币供给","提高利率","抑制投资"],
+        "answer":[1],
+        "explain":"下调准备金率释放银行可贷资金。",
+        "tags":["货币政策","情景题"]
+      },
+      {
+        "id":"GS-FIN-029-3",
+        "type":"multiple",
+        "stem":"该政策组合的主要宏观目标包括：",
+        "options":["刺激总需求","促进经济增长","缓解就业压力","抑制通货膨胀"],
+        "answer":[0,1,2],
+        "explain":"扩张性政策组合主要用于稳增长、稳就业。",
+        "tags":["宏观调控","情景多选"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-STAT-001",
+    "type":"single",
+    "stem":"统计研究的对象是：",
+    "options":["个体数量","统计总体的数量特征","统计调查方法","统计资料"],
+    "answer":[1],
+    "explain":"统计研究的是总体数量特征，而非个体。",
+    "tags":["统计概念","基础"]
+  },
+  {
+    "id":"GS-STAT-002",
+    "type":"single",
+    "stem":"统计总体是指：",
+    "options":["所有研究对象","具有某种共同特征的研究对象的全体","统计样本","统计单位"],
+    "answer":[1],
+    "explain":"统计总体是具有共同特征的全部研究对象。",
+    "tags":["统计总体","高频"]
+  },
+  {
+    "id":"GS-STAT-003",
+    "type":"single",
+    "stem":"统计单位是指：",
+    "options":["总体中的每一个个体","样本总体","统计指标","统计资料"],
+    "answer":[0],
+    "explain":"统计单位是构成统计总体的基本单位。",
+    "tags":["统计单位","基础"]
+  },
+  {
+    "id":"GS-STAT-004",
+    "type":"single",
+    "stem":"统计指标的数值表现形式不包括：",
+    "options":["绝对数","相对数","平均数","概率数"],
+    "answer":[3],
+    "explain":"统计指标的基本表现形式为绝对数、相对数和平均数。",
+    "tags":["统计指标","易错"]
+  },
+  {
+    "id":"GS-STAT-005",
+    "type":"single",
+    "stem":"反映现象规模大小的统计指标是：",
+    "options":["相对数","平均数","绝对数","指数"],
+    "answer":[2],
+    "explain":"绝对数反映现象的规模和水平。",
+    "tags":["绝对数","高频"]
+  },
+
+  {
+    "id":"GS-STAT-006",
+    "type":"single",
+    "stem":"结构相对数主要用于反映：",
+    "options":["现象发展速度","总体内部结构","对比关系","平均水平"],
+    "answer":[1],
+    "explain":"结构相对数反映总体内部各部分的构成。",
+    "tags":["相对数","核心"]
+  },
+  {
+    "id":"GS-STAT-007",
+    "type":"single",
+    "stem":"平均数的主要作用是：",
+    "options":["反映总体分布特征","反映总体一般水平","反映总体变异程度","反映结构比例"],
+    "answer":[1],
+    "explain":"平均数用于反映总体的一般水平。",
+    "tags":["平均数","高频"]
+  },
+  {
+    "id":"GS-STAT-008",
+    "type":"single",
+    "stem":"下列平均数中，最容易受极端值影响的是：",
+    "options":["算术平均数","中位数","众数","几何平均数"],
+    "answer":[0],
+    "explain":"算术平均数对极端值最敏感。",
+    "tags":["平均数","易错"]
+  },
+  {
+    "id":"GS-STAT-009",
+    "type":"single",
+    "stem":"反映数据离散程度的指标不包括：",
+    "options":["极差","方差","标准差","平均数"],
+    "answer":[3],
+    "explain":"平均数反映集中趋势，不反映离散程度。",
+    "tags":["离散程度","基础"]
+  },
+  {
+    "id":"GS-STAT-010",
+    "type":"single",
+    "stem":"标准差越大，说明数据：",
+    "options":["越集中","越分散","均值越大","数量越多"],
+    "answer":[1],
+    "explain":"标准差越大，数据离散程度越高。",
+    "tags":["标准差","理解"]
+  },
+
+  {
+    "id":"GS-STAT-011",
+    "type":"single",
+    "stem":"抽样调查中，每个单位被抽中的概率相等的是：",
+    "options":["简单随机抽样","分层抽样","整群抽样","系统抽样"],
+    "answer":[0],
+    "explain":"简单随机抽样保证每个单位抽中概率相等。",
+    "tags":["抽样方法","高频"]
+  },
+  {
+    "id":"GS-STAT-012",
+    "type":"single",
+    "stem":"为提高估计精度而常采用的抽样方法是：",
+    "options":["简单随机抽样","分层抽样","整群抽样","判断抽样"],
+    "answer":[1],
+    "explain":"分层抽样能提高样本代表性和估计精度。",
+    "tags":["抽样方法","核心"]
+  },
+  {
+    "id":"GS-STAT-013",
+    "type":"single",
+    "stem":"抽样误差产生的原因是：",
+    "options":["调查方法错误","记录错误","样本的随机性","计算错误"],
+    "answer":[2],
+    "explain":"抽样误差源于样本的随机性。",
+    "tags":["抽样误差","高频"]
+  },
+  {
+    "id":"GS-STAT-014",
+    "type":"single",
+    "stem":"参数估计的目的是：",
+    "options":["估计样本指标","推断总体参数","描述样本特征","计算误差"],
+    "answer":[1],
+    "explain":"参数估计是利用样本信息推断总体参数。",
+    "tags":["参数估计","核心"]
+  },
+  {
+    "id":"GS-STAT-015",
+    "type":"single",
+    "stem":"点估计的特点是：",
+    "options":["结果唯一","给出区间","考虑置信水平","误差可控"],
+    "answer":[0],
+    "explain":"点估计只给出一个估计值。",
+    "tags":["点估计","基础"]
+  },
+
+  {
+    "id":"GS-STAT-016",
+    "type":"single",
+    "stem":"区间估计需要给出的要素不包括：",
+    "options":["置信区间","置信水平","样本容量","估计量"],
+    "answer":[2],
+    "explain":"区间估计不要求给出样本容量。",
+    "tags":["区间估计","易错"]
+  },
+  {
+    "id":"GS-STAT-017",
+    "type":"single",
+    "stem":"置信水平为 95% 表示：",
+    "options":["区间内包含样本均值概率为95%","区间内包含总体参数概率为95%","估计值正确率95%","样本正确率95%"],
+    "answer":[1],
+    "explain":"置信水平指区间包含总体参数的可信程度。",
+    "tags":["置信水平","高频"]
+  },
+  {
+    "id":"GS-STAT-018",
+    "type":"single",
+    "stem":"假设检验的第一步是：",
+    "options":["计算统计量","作出结论","提出假设","确定显著性水平"],
+    "answer":[2],
+    "explain":"假设检验首先要提出原假设和备择假设。",
+    "tags":["假设检验","核心"]
+  },
+  {
+    "id":"GS-STAT-019",
+    "type":"single",
+    "stem":"原假设通常表示：",
+    "options":["研究者希望证明的结论","没有差异或效应","必然成立的结论","样本结论"],
+    "answer":[1],
+    "explain":"原假设一般表示“无差异、无效应”。",
+    "tags":["原假设","高频"]
+  },
+  {
+    "id":"GS-STAT-020",
+    "type":"single",
+    "stem":"当检验结果拒绝原假设时，意味着：",
+    "options":["原假设成立","备择假设成立","样本错误","无法判断"],
+    "answer":[1],
+    "explain":"拒绝原假设即支持备择假设。",
+    "tags":["假设检验","理解"]
+  },
+
+  {
+    "id":"GS-STAT-021",
+    "type":"multiple",
+    "stem":"统计数据的来源包括：",
+    "options":["统计调查","统计报表","行政记录","实验数据"],
+    "answer":[0,1,2,3],
+    "explain":"以上均为合法统计数据来源。",
+    "tags":["统计数据","多选"]
+  },
+  {
+    "id":"GS-STAT-022",
+    "type":"multiple",
+    "stem":"常见的离散程度指标有：",
+    "options":["极差","方差","标准差","平均数"],
+    "answer":[0,1,2],
+    "explain":"平均数不反映离散程度。",
+    "tags":["离散程度","多选"]
+  },
+  {
+    "id":"GS-STAT-023",
+    "type":"multiple",
+    "stem":"影响抽样误差大小的因素包括：",
+    "options":["样本容量","总体变异程度","抽样方法","调查员水平"],
+    "answer":[0,1,2],
+    "explain":"调查员水平影响的是非抽样误差。",
+    "tags":["抽样误差","多选"]
+  },
+  {
+    "id":"GS-STAT-024",
+    "type":"multiple",
+    "stem":"区间估计的区间宽度受以下因素影响：",
+    "options":["置信水平","样本容量","总体方差","统计软件"],
+    "answer":[0,1,2],
+    "explain":"统计软件不影响理论区间宽度。",
+    "tags":["区间估计","多选"]
+  },
+  {
+    "id":"GS-STAT-025",
+    "type":"multiple",
+    "stem":"下列属于假设检验常用统计量的有：",
+    "options":["Z统计量","t统计量","χ²统计量","F统计量"],
+    "answer":[0,1,2,3],
+    "explain":"以上均为常见假设检验统计量。",
+    "tags":["假设检验","多选"]
+  },
+
+  {
+    "id":"GS-STAT-026",
+    "type":"material",
+    "stem":"某企业对员工月收入进行抽样调查，计算得样本平均收入为 8000 元，标准差为 1000 元，样本容量为 100。",
+    "subQuestions":[
+      {
+        "id":"GS-STAT-026-1",
+        "type":"single",
+        "stem":"该调查属于：",
+        "options":["全面调查","重点调查","抽样调查","典型调查"],
+        "answer":[2],
+        "explain":"仅调查部分员工，属于抽样调查。",
+        "tags":["抽样调查","情景题"]
+      },
+      {
+        "id":"GS-STAT-026-2",
+        "type":"single",
+        "stem":"样本平均数属于：",
+        "options":["总体参数","样本统计量","相对数","指数"],
+        "answer":[1],
+        "explain":"样本均值是样本统计量。",
+        "tags":["统计量","情景题"]
+      },
+      {
+        "id":"GS-STAT-026-3",
+        "type":"single",
+        "stem":"样本容量扩大，将会：",
+        "options":["增大抽样误差","减小抽样误差","不影响误差","改变均值"],
+        "answer":[1],
+        "explain":"样本容量越大，抽样误差越小。",
+        "tags":["抽样误差","情景题"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-STAT-027",
+    "type":"material",
+    "stem":"研究发现广告投入与销售收入之间存在相关关系。",
+    "subQuestions":[
+      {
+        "id":"GS-STAT-027-1",
+        "type":"single",
+        "stem":"该研究主要采用的方法是：",
+        "options":["回归分析","指数分析","抽样调查","描述统计"],
+        "answer":[0],
+        "explain":"分析变量之间关系通常采用回归分析。",
+        "tags":["回归分析","情景题"]
+      },
+      {
+        "id":"GS-STAT-027-2",
+        "type":"single",
+        "stem":"相关系数的取值范围是：",
+        "options":["0~1","-1~1","-∞~∞","无固定范围"],
+        "answer":[1],
+        "explain":"相关系数取值范围为 -1 到 1。",
+        "tags":["相关分析","高频"]
+      },
+      {
+        "id":"GS-STAT-027-3",
+        "type":"single",
+        "stem":"相关关系表明：",
+        "options":["因果关系","函数关系","变量间有联系","必然关系"],
+        "answer":[2],
+        "explain":"相关不等于因果。",
+        "tags":["相关分析","易错"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-ACC-001",
+    "type":"single",
+    "stem":"会计的基本职能是：",
+    "options":["预测和决策","核算和监督","分析和评价","计划和控制"],
+    "answer":[1],
+    "explain":"会计最基本的职能是核算和监督。",
+    "tags":["会计职能","高频"]
+  },
+  {
+    "id":"GS-ACC-002",
+    "type":"single",
+    "stem":"会计核算的前提条件不包括：",
+    "options":["会计主体","持续经营","会计分期","货币计量"],
+    "answer":[3],
+    "explain":"会计核算的基本前提包括会计主体、持续经营、会计分期。",
+    "tags":["会计假设","易错"]
+  },
+  {
+    "id":"GS-ACC-003",
+    "type":"single",
+    "stem":"会计主体假设的核心要求是：",
+    "options":["区分会计主体与所有者","持续经营","合理分期","统一货币"],
+    "answer":[0],
+    "explain":"会计主体要求明确会计核算的范围。",
+    "tags":["会计主体","核心"]
+  },
+  {
+    "id":"GS-ACC-004",
+    "type":"single",
+    "stem":"持续经营假设是指：",
+    "options":["企业永远存在","企业短期内不会破产","企业正常持续经营","企业长期盈利"],
+    "answer":[2],
+    "explain":"持续经营假设指企业在可预见的未来正常经营。",
+    "tags":["持续经营","高频"]
+  },
+  {
+    "id":"GS-ACC-005",
+    "type":"single",
+    "stem":"会计分期的意义在于：",
+    "options":["提高会计准确性","便于及时提供会计信息","减少会计工作量","统一核算方法"],
+    "answer":[1],
+    "explain":"会计分期便于定期反映经营成果。",
+    "tags":["会计分期","理解"]
+  },
+
+  {
+    "id":"GS-ACC-006",
+    "type":"single",
+    "stem":"会计信息质量要求中，要求信息真实可靠的是：",
+    "options":["相关性","可靠性","可比性","及时性"],
+    "answer":[1],
+    "explain":"可靠性要求会计信息真实、完整。",
+    "tags":["信息质量","高频"]
+  },
+  {
+    "id":"GS-ACC-007",
+    "type":"single",
+    "stem":"要求会计信息在不同期间、不同企业之间可比较的是：",
+    "options":["可靠性","重要性","可比性","谨慎性"],
+    "answer":[2],
+    "explain":"可比性要求采用一致的会计政策。",
+    "tags":["信息质量","核心"]
+  },
+  {
+    "id":"GS-ACC-008",
+    "type":"single",
+    "stem":"谨慎性原则要求：",
+    "options":["多计资产","少计费用","不高估资产、不低估负债","利润最大化"],
+    "answer":[2],
+    "explain":"谨慎性强调风险意识。",
+    "tags":["谨慎性","易错"]
+  },
+  {
+    "id":"GS-ACC-009",
+    "type":"single",
+    "stem":"下列不属于会计要素的是：",
+    "options":["资产","负债","所有者权益","成本"],
+    "answer":[3],
+    "explain":"成本属于费用范畴，不是独立会计要素。",
+    "tags":["会计要素","高频"]
+  },
+  {
+    "id":"GS-ACC-010",
+    "type":"single",
+    "stem":"资产的本质特征是：",
+    "options":["企业拥有所有权","由过去交易形成","预期带来经济利益","可以货币计量"],
+    "answer":[2],
+    "explain":"资产的核心是预期经济利益。",
+    "tags":["资产","核心"]
+  },
+
+  {
+    "id":"GS-ACC-011",
+    "type":"single",
+    "stem":"负债是指：",
+    "options":["未来收入","过去交易形成的现时义务","企业利润","所有者投入"],
+    "answer":[1],
+    "explain":"负债是企业承担的现时义务。",
+    "tags":["负债","基础"]
+  },
+  {
+    "id":"GS-ACC-012",
+    "type":"single",
+    "stem":"所有者权益等于：",
+    "options":["资产-负债","收入-费用","利润+资本","资产+负债"],
+    "answer":[0],
+    "explain":"这是基本会计恒等式。",
+    "tags":["会计恒等式","高频"]
+  },
+  {
+    "id":"GS-ACC-013",
+    "type":"single",
+    "stem":"复式记账法的基本特点是：",
+    "options":["一借一贷","有借必有贷，借贷必相等","只记收入","只记费用"],
+    "answer":[1],
+    "explain":"复式记账保证会计记录完整。",
+    "tags":["记账方法","核心"]
+  },
+  {
+    "id":"GS-ACC-014",
+    "type":"single",
+    "stem":"借贷记账法中，资产类账户增加记在：",
+    "options":["借方","贷方","借贷均可","不记录"],
+    "answer":[0],
+    "explain":"资产增加记借方。",
+    "tags":["借贷记账","高频"]
+  },
+  {
+    "id":"GS-ACC-015",
+    "type":"single",
+    "stem":"费用类账户期末一般：",
+    "options":["有余额","无余额","借方余额","贷方余额"],
+    "answer":[1],
+    "explain":"费用期末结转后无余额。",
+    "tags":["账户结构","理解"]
+  },
+
+  {
+    "id":"GS-ACC-016",
+    "type":"single",
+    "stem":"收入确认的核心条件是：",
+    "options":["收到现金","发生经济利益流入且可靠计量","签订合同","开具发票"],
+    "answer":[1],
+    "explain":"收入确认强调经济利益流入和可靠计量。",
+    "tags":["收入确认","高频"]
+  },
+  {
+    "id":"GS-ACC-017",
+    "type":"single",
+    "stem":"费用的确认应遵循：",
+    "options":["权责发生制","收付实现制","历史成本","配比原则"],
+    "answer":[3],
+    "explain":"费用应与相关收入相配比。",
+    "tags":["费用确认","核心"]
+  },
+  {
+    "id":"GS-ACC-018",
+    "type":"single",
+    "stem":"权责发生制下，费用确认的依据是：",
+    "options":["现金收付","经济业务发生","合同签订","发票取得"],
+    "answer":[1],
+    "explain":"权责发生制以业务发生为确认标准。",
+    "tags":["权责发生制","高频"]
+  },
+  {
+    "id":"GS-ACC-019",
+    "type":"single",
+    "stem":"制造成本不包括：",
+    "options":["直接材料","直接人工","制造费用","管理费用"],
+    "answer":[3],
+    "explain":"管理费用属于期间费用。",
+    "tags":["成本费用","易错"]
+  },
+  {
+    "id":"GS-ACC-020",
+    "type":"single",
+    "stem":"期间费用应计入：",
+    "options":["产品成本","存货成本","当期损益","资本公积"],
+    "answer":[2],
+    "explain":"期间费用直接影响当期损益。",
+    "tags":["期间费用","高频"]
+  },
+
+  {
+    "id":"GS-ACC-021",
+    "type":"multiple",
+    "stem":"会计信息质量要求包括：",
+    "options":["可靠性","相关性","可比性","谨慎性"],
+    "answer":[0,1,2,3],
+    "explain":"以上均属于会计信息质量要求。",
+    "tags":["信息质量","多选"]
+  },
+  {
+    "id":"GS-ACC-022",
+    "type":"multiple",
+    "stem":"属于资产的有：",
+    "options":["现金","应收账款","固定资产","预收账款"],
+    "answer":[0,1,2],
+    "explain":"预收账款属于负债。",
+    "tags":["资产","多选"]
+  },
+  {
+    "id":"GS-ACC-023",
+    "type":"multiple",
+    "stem":"属于负债的有：",
+    "options":["应付账款","短期借款","预收账款","实收资本"],
+    "answer":[0,1,2],
+    "explain":"实收资本属于所有者权益。",
+    "tags":["负债","多选"]
+  },
+  {
+    "id":"GS-ACC-024",
+    "type":"multiple",
+    "stem":"会计等式的表现形式包括：",
+    "options":["资产=负债+所有者权益","资产-负债=所有者权益","收入-费用=利润","资产+负债=权益"],
+    "answer":[0,1,2],
+    "explain":"前三项均为会计等式的不同形式。",
+    "tags":["会计等式","多选"]
+  },
+  {
+    "id":"GS-ACC-025",
+    "type":"multiple",
+    "stem":"影响利润的因素包括：",
+    "options":["收入","费用","成本","所有者投入"],
+    "answer":[0,1,2],
+    "explain":"所有者投入不影响利润。",
+    "tags":["利润","多选"]
+  },
+
+  {
+    "id":"GS-ACC-026",
+    "type":"material",
+    "stem":"某企业本月销售商品取得收入 100 万元，相关成本 60 万元，发生管理费用 10 万元。",
+    "subQuestions":[
+      {
+        "id":"GS-ACC-026-1",
+        "type":"single",
+        "stem":"该企业本月利润为：",
+        "options":["20 万元","30 万元","40 万元","50 万元"],
+        "answer":[1],
+        "explain":"利润=100-60-10=30。",
+        "tags":["利润计算","情景题"]
+      },
+      {
+        "id":"GS-ACC-026-2",
+        "type":"single",
+        "stem":"管理费用属于：",
+        "options":["产品成本","制造费用","期间费用","资产"],
+        "answer":[2],
+        "explain":"管理费用是期间费用。",
+        "tags":["费用分类","情景题"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-ACC-027",
+    "type":"material",
+    "stem":"某企业购入一台设备用于生产，支付现金。",
+    "subQuestions":[
+      {
+        "id":"GS-ACC-027-1",
+        "type":"single",
+        "stem":"该经济业务会导致：",
+        "options":["资产总额增加","资产结构变化","负债增加","所有者权益减少"],
+        "answer":[1],
+        "explain":"一项资产减少，另一项资产增加。",
+        "tags":["经济业务分析","情景题"]
+      },
+      {
+        "id":"GS-ACC-027-2",
+        "type":"single",
+        "stem":"该设备应确认为：",
+        "options":["费用","存货","固定资产","无形资产"],
+        "answer":[2],
+        "explain":"用于生产且长期使用的设备属于固定资产。",
+        "tags":["资产确认","情景题"]
+      }
+    ]
+  },
+ {
+    "id":"GS-LAW-001",
+    "type":"single",
+    "stem":"经济法调整的主要对象是：",
+    "options":["平等主体之间的财产关系","国家宏观调控中的经济关系","刑事法律关系","行政隶属关系"],
+    "answer":[1],
+    "explain":"经济法主要调整国家在宏观调控中的经济关系。",
+    "tags":["经济法概念","高频"]
+  },
+  {
+    "id":"GS-LAW-002",
+    "type":"single",
+    "stem":"下列不属于经济法基本原则的是：",
+    "options":["公平原则","效率原则","国家干预原则","意思自治原则"],
+    "answer":[3],
+    "explain":"意思自治是民法原则，不是经济法核心原则。",
+    "tags":["经济法原则","易错"]
+  },
+  {
+    "id":"GS-LAW-003",
+    "type":"single",
+    "stem":"民事法律行为成立的基本要件不包括：",
+    "options":["行为人具有民事行为能力","意思表示真实","不违反法律和公序良俗","必须采用书面形式"],
+    "answer":[3],
+    "explain":"民事法律行为一般不要求必须书面形式。",
+    "tags":["民事法律行为","高频"]
+  },
+  {
+    "id":"GS-LAW-004",
+    "type":"single",
+    "stem":"限制民事行为能力人实施的民事法律行为：",
+    "options":["一律无效","一律有效","与其年龄、智力相适应的有效","需经法院确认"],
+    "answer":[2],
+    "explain":"限制民事行为能力人可实施与其能力相适应的行为。",
+    "tags":["民事主体","核心"]
+  },
+  {
+    "id":"GS-LAW-005",
+    "type":"single",
+    "stem":"依法成立的合同，对当事人具有：",
+    "options":["约束力","建议力","参考性","道德约束力"],
+    "answer":[0],
+    "explain":"依法成立的合同具有法律约束力。",
+    "tags":["合同效力","高频"]
+  },
+
+  {
+    "id":"GS-LAW-006",
+    "type":"single",
+    "stem":"合同成立的时间是：",
+    "options":["合同签字时","合同生效时","承诺到达要约人时","履行完毕时"],
+    "answer":[2],
+    "explain":"承诺到达要约人时，合同成立。",
+    "tags":["合同订立","核心"]
+  },
+  {
+    "id":"GS-LAW-007",
+    "type":"single",
+    "stem":"下列情形中，合同无效的是：",
+    "options":["重大误解","显失公平","违反法律强制性规定","一方违约"],
+    "answer":[2],
+    "explain":"违反法律、行政法规的强制性规定，合同无效。",
+    "tags":["合同效力","高频"]
+  },
+  {
+    "id":"GS-LAW-008",
+    "type":"single",
+    "stem":"合同履行应遵循的基本原则是：",
+    "options":["效率原则","公平原则","诚实信用原则","自愿原则"],
+    "answer":[2],
+    "explain":"合同履行强调诚实信用原则。",
+    "tags":["合同履行","核心"]
+  },
+  {
+    "id":"GS-LAW-009",
+    "type":"single",
+    "stem":"违约责任的主要承担方式不包括：",
+    "options":["继续履行","采取补救措施","支付违约金","行政处罚"],
+    "answer":[3],
+    "explain":"行政处罚不是违约责任形式。",
+    "tags":["违约责任","易错"]
+  },
+  {
+    "id":"GS-LAW-010",
+    "type":"single",
+    "stem":"下列不属于合同终止情形的是：",
+    "options":["履行完毕","解除","债务相互抵销","违约发生"],
+    "answer":[3],
+    "explain":"违约本身不当然导致合同终止。",
+    "tags":["合同终止","高频"]
+  },
+
+  {
+    "id":"GS-LAW-011",
+    "type":"single",
+    "stem":"有限责任公司的股东对公司债务承担：",
+    "options":["无限责任","连带责任","以出资额为限的责任","保证责任"],
+    "answer":[2],
+    "explain":"有限责任公司股东以出资额为限承担责任。",
+    "tags":["公司法","核心"]
+  },
+  {
+    "id":"GS-LAW-012",
+    "type":"single",
+    "stem":"有限责任公司的最高权力机构是：",
+    "options":["董事会","监事会","经理","股东会"],
+    "answer":[3],
+    "explain":"股东会是公司的最高权力机构。",
+    "tags":["公司治理","高频"]
+  },
+  {
+    "id":"GS-LAW-013",
+    "type":"single",
+    "stem":"公司法定代表人一般由：",
+    "options":["监事担任","股东担任","董事长或经理担任","会计担任"],
+    "answer":[2],
+    "explain":"法定代表人通常由董事长、执行董事或经理担任。",
+    "tags":["公司法","理解"]
+  },
+  {
+    "id":"GS-LAW-014",
+    "type":"single",
+    "stem":"物权变动的一般生效要件是：",
+    "options":["合同成立","合同生效","登记或交付","支付价款"],
+    "answer":[2],
+    "explain":"物权变动通常以登记或交付为生效要件。",
+    "tags":["物权法","核心"]
+  },
+  {
+    "id":"GS-LAW-015",
+    "type":"single",
+    "stem":"不动产物权的设立、变更、转让和消灭，依法应当：",
+    "options":["合同约定","交付","登记","公告"],
+    "answer":[2],
+    "explain":"不动产物权变动以登记为生效要件。",
+    "tags":["物权法","高频"]
+  },
+
+  {
+    "id":"GS-LAW-016",
+    "type":"single",
+    "stem":"专利权的保护对象是：",
+    "options":["文学作品","发明创造","商业秘密","商标标识"],
+    "answer":[1],
+    "explain":"专利权保护发明、实用新型和外观设计。",
+    "tags":["知识产权","核心"]
+  },
+  {
+    "id":"GS-LAW-017",
+    "type":"single",
+    "stem":"商标权取得的主要方式是：",
+    "options":["使用","登记","转让","继承"],
+    "answer":[1],
+    "explain":"我国商标权以注册取得为原则。",
+    "tags":["商标法","高频"]
+  },
+  {
+    "id":"GS-LAW-018",
+    "type":"single",
+    "stem":"反不正当竞争法调整的对象是：",
+    "options":["市场垄断行为","不正当竞争行为","价格违法行为","税收违法行为"],
+    "answer":[1],
+    "explain":"该法主要规范不正当竞争行为。",
+    "tags":["竞争法","核心"]
+  },
+  {
+    "id":"GS-LAW-019",
+    "type":"single",
+    "stem":"经营者实施垄断行为，将可能承担的法律责任是：",
+    "options":["刑事责任","民事责任","行政责任","以上皆是"],
+    "answer":[3],
+    "explain":"垄断行为可能引发多种法律责任。",
+    "tags":["反垄断","高频"]
+  },
+  {
+    "id":"GS-LAW-020",
+    "type":"single",
+    "stem":"消费者依法享有的首要权利是：",
+    "options":["公平交易权","知情权","安全权","选择权"],
+    "answer":[2],
+    "explain":"人身、财产安全权是消费者最基本权利。",
+    "tags":["消费者权益","高频"]
+  },
+
+  {
+    "id":"GS-LAW-021",
+    "type":"multiple",
+    "stem":"民事法律行为无效的情形包括：",
+    "options":["违反法律强制性规定","恶意串通损害他人利益","意思表示不真实","以合法形式掩盖非法目的"],
+    "answer":[0,1,3],
+    "explain":"意思表示不真实一般导致可撤销而非当然无效。",
+    "tags":["民事行为效力","多选"]
+  },
+  {
+    "id":"GS-LAW-022",
+    "type":"multiple",
+    "stem":"合同的基本原则包括：",
+    "options":["自愿原则","公平原则","诚实信用原则","合法原则"],
+    "answer":[0,1,2,3],
+    "explain":"以上均为合同法基本原则。",
+    "tags":["合同原则","多选"]
+  },
+  {
+    "id":"GS-LAW-023",
+    "type":"multiple",
+    "stem":"有限责任公司股东的权利包括：",
+    "options":["表决权","分红权","查阅公司资料权","请求解散公司权"],
+    "answer":[0,1,2,3],
+    "explain":"上述均为股东依法享有的权利。",
+    "tags":["公司法","多选"]
+  },
+  {
+    "id":"GS-LAW-024",
+    "type":"multiple",
+    "stem":"知识产权包括：",
+    "options":["著作权","专利权","商标权","物权"],
+    "answer":[0,1,2],
+    "explain":"物权不属于知识产权。",
+    "tags":["知识产权","多选"]
+  },
+  {
+    "id":"GS-LAW-025",
+    "type":"multiple",
+    "stem":"消费者维权途径包括：",
+    "options":["与经营者协商","向消费者协会投诉","行政投诉","提起诉讼"],
+    "answer":[0,1,2,3],
+    "explain":"以上均为合法维权途径。",
+    "tags":["消费者保护","多选"]
+  },
+
+  {
+    "id":"GS-LAW-026",
+    "type":"material",
+    "stem":"甲公司与乙公司签订买卖合同，合同成立后，甲公司发现乙公司提供的商品严重不符合约定用途。",
+    "subQuestions":[
+      {
+        "id":"GS-LAW-026-1",
+        "type":"single",
+        "stem":"甲公司可以主张的权利是：",
+        "options":["解除合同","要求赔偿","要求继续履行","以上均可"],
+        "answer":[3],
+        "explain":"严重违约情形下，守约方可选择多种救济方式。",
+        "tags":["违约责任","情景题"]
+      },
+      {
+        "id":"GS-LAW-026-2",
+        "type":"single",
+        "stem":"该合同纠纷适用的法律主要是：",
+        "options":["公司法","合同法","反不正当竞争法","消费者权益保护法"],
+        "answer":[1],
+        "explain":"买卖合同纠纷适用合同法。",
+        "tags":["合同法","情景题"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-LAW-027",
+    "type":"material",
+    "stem":"某消费者购买家电后发现存在严重安全隐患，经营者拒绝退换。",
+    "subQuestions":[
+      {
+        "id":"GS-LAW-027-1",
+        "type":"single",
+        "stem":"消费者最优先主张的权利是：",
+        "options":["知情权","公平交易权","安全权","求偿权"],
+        "answer":[2],
+        "explain":"涉及人身、财产安全时，安全权优先。",
+        "tags":["消费者权益","情景题"]
+      },
+      {
+        "id":"GS-LAW-027-2",
+        "type":"single",
+        "stem":"该纠纷中，消费者可以依法：",
+        "options":["只能协商解决","只能行政投诉","放弃权利","多途径维权"],
+        "answer":[3],
+        "explain":"消费者可依法选择多种维权方式。",
+        "tags":["消费者保护","情景题"]
+      }
+    ]
+  },
+  {
+    "id":"GS-HARD-001",
+    "type":"single",
+    "stem":"在需求价格弹性绝对值大于 1 的情况下，政府对该商品征收从量税，最可能产生的结果是：",
+    "options":["消费者负担税收比例更高","生产者负担税收比例更高","税收负担完全由消费者承担","税收不会改变交易量"],
+    "answer":[1],
+    "explain":"需求弹性大、供给相对缺乏弹性时，税负更多由生产者承担。",
+    "tags":["微观经济","弹性","高难"]
+  },
+  {
+    "id":"GS-HARD-002",
+    "type":"single",
+    "stem":"若某完全竞争行业在长期内持续获得超额利润，则最可能的解释是：",
+    "options":["行业需求持续上升","行业存在进入壁垒","企业成本核算错误","边际成本曲线异常"],
+    "answer":[1],
+    "explain":"完全竞争市场长期超额利润只能由进入壁垒解释。",
+    "tags":["市场结构","长期均衡","高难"]
+  },
+  {
+    "id":"GS-HARD-003",
+    "type":"single",
+    "stem":"在 IS-LM 模型中，若投资对利率高度敏感，而货币需求对利率不敏感，则扩张性财政政策的效果将：",
+    "options":["被完全挤出","几乎无挤出","乘数效应为零","引起利率下降"],
+    "answer":[0],
+    "explain":"投资高度利率敏感 + 货币需求利率不敏感 → 挤出效应极强。",
+    "tags":["IS-LM","财政政策","高难"]
+  },
+  {
+    "id":"GS-HARD-004",
+    "type":"single",
+    "stem":"下列哪一情形最符合“理性预期导致政策无效”的结论？",
+    "options":["货币扩张被市场提前预期","财政支出具有乘数效应","自动稳定器发挥作用","存在价格粘性"],
+    "answer":[0],
+    "explain":"理性预期下，系统性政策被提前预期而失效。",
+    "tags":["宏观经济","理性预期","高难"]
+  },
+  {
+    "id":"GS-HARD-005",
+    "type":"single",
+    "stem":"在通货膨胀持续存在但名义利率不变的情况下，实际利率将：",
+    "options":["上升","下降","不变","先升后降"],
+    "answer":[1],
+    "explain":"实际利率 = 名义利率 − 通胀率。",
+    "tags":["金融","利率","高难"]
+  },
+
+  {
+    "id":"GS-HARD-006",
+    "type":"single",
+    "stem":"下列哪种统计情形下，算术平均数最不具有代表性？",
+    "options":["数据分布对称","数据存在极端值","样本容量较大","数据集中程度高"],
+    "answer":[1],
+    "explain":"极端值会严重扭曲算术平均数。",
+    "tags":["统计","平均数","高难"]
+  },
+  {
+    "id":"GS-HARD-007",
+    "type":"single",
+    "stem":"在置信区间估计中，若保持样本容量不变，提高置信水平，则区间将：",
+    "options":["变窄","不变","变宽","随机变化"],
+    "answer":[2],
+    "explain":"置信水平越高，区间越宽。",
+    "tags":["统计","区间估计","高难"]
+  },
+  {
+    "id":"GS-HARD-008",
+    "type":"single",
+    "stem":"在假设检验中，第一类错误是指：",
+    "options":["原假设成立却被拒绝","原假设不成立却未被拒绝","样本错误","统计量计算错误"],
+    "answer":[0],
+    "explain":"第一类错误是“弃真”。",
+    "tags":["统计","假设检验","高难"]
+  },
+
+  {
+    "id":"GS-HARD-009",
+    "type":"single",
+    "stem":"在权责发生制下，下列事项中应确认为当期费用的是：",
+    "options":["已支付但尚未使用的服务","已发生但尚未支付的费用","购入固定资产","股东分红"],
+    "answer":[1],
+    "explain":"权责发生制以经济业务发生为准。",
+    "tags":["会计","权责发生制","高难"]
+  },
+  {
+    "id":"GS-HARD-010",
+    "type":"single",
+    "stem":"下列情形中，不会影响当期利润的是：",
+    "options":["确认收入","计提费用","股东追加投资","发生管理费用"],
+    "answer":[2],
+    "explain":"所有者投入不影响利润。",
+    "tags":["会计","利润","高难"]
+  },
+
+  {
+    "id":"GS-HARD-011",
+    "type":"multiple",
+    "stem":"下列情形中，可能导致市场失灵的有：",
+    "options":["外部性存在","信息不对称","规模经济显著","完全竞争"],
+    "answer":[0,1,2],
+    "explain":"完全竞争是理想状态，不是市场失灵。",
+    "tags":["微观经济","市场失灵","高难"]
+  },
+  {
+    "id":"GS-HARD-012",
+    "type":"multiple",
+    "stem":"在扩张性财政政策下，可能同时出现的结果包括：",
+    "options":["财政赤字扩大","利率上升","投资被挤出","总需求上升"],
+    "answer":[0,1,2,3],
+    "explain":"扩张性财政政策常伴随挤出效应。",
+    "tags":["宏观经济","财政政策","高难"]
+  },
+  {
+    "id":"GS-HARD-013",
+    "type":"multiple",
+    "stem":"商业银行面临的主要金融风险包括：",
+    "options":["信用风险","流动性风险","市场风险","政策风险"],
+    "answer":[0,1,2],
+    "explain":"政策风险主要由政府承担。",
+    "tags":["金融","风险","高难"]
+  },
+  {
+    "id":"GS-HARD-014",
+    "type":"multiple",
+    "stem":"下列合同情形中，合同无效的有：",
+    "options":["违反法律强制性规定","恶意串通损害第三人利益","重大误解","以合法形式掩盖非法目的"],
+    "answer":[0,1,3],
+    "explain":"重大误解通常导致可撤销。",
+    "tags":["经济法","合同效力","高难"]
+  },
+
+  {
+    "id":"GS-HARD-015",
+    "type":"material",
+    "stem":"某国在经济下行阶段实施大规模减税政策，同时央行维持利率不变。市场预期未来将出现通货膨胀。",
+    "subQuestions":[
+      {
+        "id":"GS-HARD-015-1",
+        "type":"single",
+        "stem":"若预期通胀上升而名义利率不变，实际利率将：",
+        "options":["上升","下降","不变","不确定"],
+        "answer":[1],
+        "explain":"通胀预期上升 → 实际利率下降。",
+        "tags":["宏观","利率","情景高难"]
+      },
+      {
+        "id":"GS-HARD-015-2",
+        "type":"single",
+        "stem":"在理性预期条件下，该财政政策的刺激效果最可能：",
+        "options":["完全有效","部分有效","被提前抵消","无限放大"],
+        "answer":[2],
+        "explain":"理性预期可能削弱政策效果。",
+        "tags":["宏观","理性预期","情景高难"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-HARD-016",
+    "type":"material",
+    "stem":"某企业通过关联交易转移利润，导致财务报表利润持续偏低，但现金流充足。",
+    "subQuestions":[
+      {
+        "id":"GS-HARD-016-1",
+        "type":"single",
+        "stem":"该情形最可能违反的会计信息质量要求是：",
+        "options":["相关性","可靠性","及时性","可理解性"],
+        "answer":[1],
+        "explain":"利润失真违背可靠性原则。",
+        "tags":["会计","信息质量","情景高难"]
+      },
+      {
+        "id":"GS-HARD-016-2",
+        "type":"single",
+        "stem":"若该行为损害市场竞争秩序，还可能涉及：",
+        "options":["公司法","反不正当竞争法","消费者权益保护法","劳动合同法"],
+        "answer":[1],
+        "explain":"关联交易操纵可能构成不正当竞争。",
+        "tags":["经济法","竞争法","情景高难"]
+      }
+    ]
+  },
+  {
+    "id":"GS-BOSS-001",
+    "type":"single",
+    "stem":"在完全竞争市场中，若政府对某必需品同时实施最高限价与单位补贴，且补贴对象为生产者，则最可能的长期结果是：",
+    "options":["市场短缺加剧","均衡价格上升","供给增加、短缺缓解","需求下降"],
+    "answer":[2],
+    "explain":"补贴降低生产者成本，供给曲线右移，有助于缓解最高限价导致的短缺。",
+    "tags":["微观经济","价格管制","Boss"]
+  },
+  {
+    "id":"GS-BOSS-002",
+    "type":"single",
+    "stem":"在 IS-LM 模型中，若经济处于流动性陷阱，同时政府扩大财政支出，则国民收入最可能：",
+    "options":["大幅上升","小幅上升","不变","下降"],
+    "answer":[0],
+    "explain":"流动性陷阱下货币政策失效，但财政政策乘数效应极强。",
+    "tags":["宏观经济","IS-LM","Boss"]
+  },
+  {
+    "id":"GS-BOSS-003",
+    "type":"single",
+    "stem":"在持续通货膨胀环境中，若名义工资调整存在滞后，则最先受损的群体通常是：",
+    "options":["债务人","企业","固定收入者","政府"],
+    "answer":[2],
+    "explain":"名义工资滞后于物价上涨，固定收入者实际收入下降。",
+    "tags":["宏观经济","通货膨胀","Boss"]
+  },
+  {
+    "id":"GS-BOSS-004",
+    "type":"single",
+    "stem":"在统计推断中，与“提高置信水平”产生相同方向影响的是：",
+    "options":["扩大样本容量","减少样本容量","降低显著性水平","提高显著性水平"],
+    "answer":[1],
+    "explain":"提高置信水平或减少样本容量，都会使置信区间变宽。",
+    "tags":["统计","区间估计","Boss"]
+  },
+
+  {
+    "id":"GS-BOSS-005",
+    "type":"multiple",
+    "stem":"下列政策组合中，最可能在短期内同时推高资产价格并加剧收入分配不均的有：",
+    "options":["扩张性货币政策","减税（偏向高收入者）","提高存款准备金率","紧缩性财政政策"],
+    "answer":[0,1],
+    "explain":"宽松货币与偏向高收入群体的减税，易推高资产价格并扩大差距。",
+    "tags":["宏观经济","政策组合","Boss"]
+  },
+  {
+    "id":"GS-BOSS-006",
+    "type":"multiple",
+    "stem":"下列情形中，同时构成“市场失灵”与“政府失灵”的有：",
+    "options":["价格上限导致黑市","补贴引发寻租行为","完全竞争市场","信息完全透明"],
+    "answer":[0,1],
+    "explain":"不当干预可能放大原有市场问题，形成双重失灵。",
+    "tags":["微观经济","政府干预","Boss"]
+  },
+
+  {
+    "id":"GS-BOSS-007",
+    "type":"material",
+    "stem":"某国为刺激经济，实施大规模减税与宽松货币政策。一年后，GDP 增速回升，但房价和股价快速上涨，实体投资改善有限。",
+    "subQuestions":[
+      {
+        "id":"GS-BOSS-007-1",
+        "type":"single",
+        "stem":"该现象最符合以下哪种判断？",
+        "options":["财政政策完全无效","货币政策传导至资产市场更快","乘数效应不存在","供给能力严重不足"],
+        "answer":[1],
+        "explain":"宽松货币往往先作用于资产价格。",
+        "tags":["宏观经济","政策传导","Boss"]
+      },
+      {
+        "id":"GS-BOSS-007-2",
+        "type":"single",
+        "stem":"若继续维持该政策组合，最主要的中长期风险是：",
+        "options":["通货紧缩","资产泡沫破裂","财政盈余过大","就业不足"],
+        "answer":[1],
+        "explain":"资产价格脱离基本面，泡沫风险上升。",
+        "tags":["宏观经济","风险","Boss"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-BOSS-008",
+    "type":"material",
+    "stem":"某上市公司通过关联交易将利润转移至境外关联方，导致财务报表利润偏低，但现金流表现良好。",
+    "subQuestions":[
+      {
+        "id":"GS-BOSS-008-1",
+        "type":"single",
+        "stem":"从会计角度看，最主要违反的是：",
+        "options":["相关性","可靠性","及时性","谨慎性"],
+        "answer":[1],
+        "explain":"利润被系统性扭曲，信息不真实。",
+        "tags":["会计","信息质量","Boss"]
+      },
+      {
+        "id":"GS-BOSS-008-2",
+        "type":"single",
+        "stem":"从经济法角度，该行为最可能同时涉及：",
+        "options":["反不正当竞争法","消费者权益保护法","劳动合同法","物权法"],
+        "answer":[0],
+        "explain":"通过关联交易破坏公平竞争秩序。",
+        "tags":["经济法","竞争法","Boss"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-BOSS-009",
+    "type":"material",
+    "stem":"统计人员在总体方差未知、小样本条件下，对总体均值进行推断。",
+    "subQuestions":[
+      {
+        "id":"GS-BOSS-009-1",
+        "type":"single",
+        "stem":"最适合采用的统计方法是：",
+        "options":["Z 检验","t 检验","χ² 检验","F 检验"],
+        "answer":[1],
+        "explain":"小样本且方差未知应使用 t 检验。",
+        "tags":["统计","假设检验","Boss"]
+      },
+      {
+        "id":"GS-BOSS-009-2",
+        "type":"single",
+        "stem":"若显著性水平由 5% 调整为 1%，则拒绝原假设将：",
+        "options":["更容易","更困难","不受影响","随机变化"],
+        "answer":[1],
+        "explain":"显著性水平越低，拒绝原假设越严格。",
+        "tags":["统计","显著性","Boss"]
+      }
+    ]
+  },
+
+  {
+    "id":"GS-BOSS-010",
+    "type":"material",
+    "stem":"某城市对网约车实行数量管制与价格上限，结果是供给不足、服务质量下降、灰色交易增多。",
+    "subQuestions":[
+      {
+        "id":"GS-BOSS-010-1",
+        "type":"single",
+        "stem":"该结果最典型地反映了：",
+        "options":["市场失灵","政府失灵","完全竞争","外部性内生化"],
+        "answer":[1],
+        "explain":"不当管制引发资源错配。",
+        "tags":["微观经济","政府干预","Boss"]
+      },
+      {
+        "id":"GS-BOSS-010-2",
+        "type":"single",
+        "stem":"从效率角度，最优改进方向是：",
+        "options":["进一步压低价格","完全放开数量与价格","增加行政处罚","扩大补贴规模"],
+        "answer":[1],
+        "explain":"放开价格与准入有助于恢复供需平衡。",
+        "tags":["微观经济","政策评估","Boss"]
+      }
+    ]
+  },
+ {
+    "id":"GS-GRAPH-001",
+    "type":"single",
+    "stem":"下图中需求曲线由 D1 移动至 D2（右移），其最可能的原因是：",
+    "graph":{"type":"demand_shift","direction":"right"},
+    "options":["商品价格上升","消费者收入增加","生产成本下降","税率上升"],
+    "answer":[1],
+    "explain":"需求曲线右移通常由收入增加、偏好增强等非价格因素引起。",
+    "tags":["微观","需求曲线","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-002",
+    "type":"single",
+    "stem":"如下供给曲线由 S1 移动至 S2（左移），其直接原因可能是：",
+    "graph":{"type":"supply_shift","direction":"left"},
+    "options":["技术进步","生产成本上升","补贴增加","生产者数量增加"],
+    "answer":[1],
+    "explain":"成本上升会导致供给曲线整体左移。",
+    "tags":["微观","供给曲线","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-003",
+    "type":"single",
+    "stem":"图中均衡价格上升、均衡数量上升，最可能的情况是：",
+    "graph":{"type":"supply_demand","result":"P_up_Q_up"},
+    "options":["需求增加","供给减少","需求减少","供给增加"],
+    "answer":[0],
+    "explain":"需求增加会同时推高价格和数量。",
+    "tags":["微观","供需均衡","图形判断"]
+  },
+  {
+    "id":"GS-GRAPH-004",
+    "type":"single",
+    "stem":"当需求曲线富有弹性时，图形通常表现为：",
+    "graph":{"type":"elasticity","elasticity":"high"},
+    "options":["陡峭","平缓","垂直","水平"],
+    "answer":[1],
+    "explain":"需求弹性越大，曲线越平缓。",
+    "tags":["微观","需求弹性","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-005",
+    "type":"single",
+    "stem":"图中 MC 曲线与 ATC 曲线的关系正确的是：",
+    "graph":{"type":"cost_curves","highlight":["MC","ATC"]},
+    "options":["MC 在 ATC 最低点相交","MC 永远低于 ATC","MC 永远高于 ATC","二者不相交"],
+    "answer":[0],
+    "explain":"边际成本曲线在平均成本最低点与其相交。",
+    "tags":["微观","成本曲线","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-006",
+    "type":"single",
+    "stem":"原材料价格上升时，最先发生变化的曲线是：",
+    "graph":{"type":"cost_curves","highlight":"MC","shift":"up"},
+    "options":["需求曲线","边际成本曲线","平均收益曲线","供给不变"],
+    "answer":[1],
+    "explain":"成本变化直接影响 MC 曲线。",
+    "tags":["微观","成本","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-007",
+    "type":"single",
+    "stem":"完全竞争厂商的利润最大化点是：",
+    "graph":{"type":"perfect_competition","highlight":"MR_MC"},
+    "options":["P=AC","P=MC","MR=MC","AR=AC"],
+    "answer":[2],
+    "explain":"利润最大化的一般条件是 MR=MC。",
+    "tags":["微观","完全竞争","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-008",
+    "type":"single",
+    "stem":"垄断厂商的 MR 曲线相对于需求曲线的位置是：",
+    "graph":{"type":"monopoly","relation":"MR_below_D"},
+    "options":["重合","高于需求曲线","低于需求曲线","无固定关系"],
+    "answer":[2],
+    "explain":"垄断市场中 MR 位于需求曲线下方。",
+    "tags":["微观","垄断","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-009",
+    "type":"single",
+    "stem":"政府征税后，消费者剩余在图形上表现为：",
+    "graph":{"type":"tax_wedge","effect":"CS_down"},
+    "options":["增加","不变","减少","无法判断"],
+    "answer":[2],
+    "explain":"税收会减少消费者剩余。",
+    "tags":["微观","税收","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-010",
+    "type":"single",
+    "stem":"补贴生产者后，供给曲线的变化方向是：",
+    "graph":{"type":"subsidy","target":"producer"},
+    "options":["左移","右移","不变","旋转"],
+    "answer":[1],
+    "explain":"补贴降低成本，供给右移。",
+    "tags":["微观","补贴","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-011",
+    "type":"single",
+    "stem":"IS 曲线向右移动，最可能的原因是：",
+    "graph":{"type":"IS_LM","curve":"IS","shift":"right"},
+    "options":["税收增加","政府支出增加","货币供给减少","利率上升"],
+    "answer":[1],
+    "explain":"政府支出增加会推动 IS 曲线右移。",
+    "tags":["宏观","IS-LM","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-012",
+    "type":"single",
+    "stem":"货币供给增加，在 IS-LM 图中表现为：",
+    "graph":{"type":"IS_LM","curve":"LM","shift":"right"},
+    "options":["IS 右移","IS 左移","LM 右移","LM 左移"],
+    "answer":[2],
+    "explain":"货币供给增加使 LM 曲线右移。",
+    "tags":["宏观","货币政策","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-013",
+    "type":"single",
+    "stem":"在流动性陷阱中，LM 曲线的典型形态是：",
+    "graph":{"type":"LM_shape","shape":"horizontal"},
+    "options":["垂直","水平","向上倾斜","不规则"],
+    "answer":[1],
+    "explain":"流动性陷阱下 LM 曲线接近水平。",
+    "tags":["宏观","流动性陷阱","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-014",
+    "type":"single",
+    "stem":"扩张性财政政策在 IS-LM 图中的直接效果是：",
+    "graph":{"type":"IS_LM","policy":"fiscal_expansion"},
+    "options":["IS 左移","LM 左移","IS 右移","LM 不变"],
+    "answer":[2],
+    "explain":"财政扩张直接推动 IS 曲线右移。",
+    "tags":["宏观","财政政策","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-015",
+    "type":"single",
+    "stem":"挤出效应在 IS-LM 图中的表现是：",
+    "graph":{"type":"IS_LM","effect":"crowding_out"},
+    "options":["收入上升、利率不变","利率上升、投资下降","利率下降、投资上升","收入下降"],
+    "answer":[1],
+    "explain":"财政扩张推高利率，抑制投资。",
+    "tags":["宏观","挤出效应","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-016",
+    "type":"single",
+    "stem":"总需求曲线（AD）右移，最可能的原因是：",
+    "graph":{"type":"AD_AS","curve":"AD","shift":"right"},
+    "options":["税收减少","生产成本上升","技术退步","供给冲击"],
+    "answer":[0],
+    "explain":"减税刺激总需求。",
+    "tags":["宏观","AD-AS","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-017",
+    "type":"single",
+    "stem":"短期总供给曲线（SRAS）左移，通常意味着：",
+    "graph":{"type":"AD_AS","curve":"SRAS","shift":"left"},
+    "options":["通胀上升","经济繁荣","成本下降","需求不足"],
+    "answer":[0],
+    "explain":"成本上升引发成本推动型通胀。",
+    "tags":["宏观","总供给","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-018",
+    "type":"single",
+    "stem":"长期总供给曲线（LRAS）的典型形态是：",
+    "graph":{"type":"AD_AS","curve":"LRAS"},
+    "options":["水平","向右上倾斜","垂直","向右下倾斜"],
+    "answer":[2],
+    "explain":"长期产出由供给决定。",
+    "tags":["宏观","长期供给","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-019",
+    "type":"single",
+    "stem":"菲利普斯曲线向右上方移动通常意味着：",
+    "graph":{"type":"phillips","shift":"right"},
+    "options":["通胀预期下降","自然失业率上升","需求不足","经济衰退"],
+    "answer":[1],
+    "explain":"自然失业率上升会推移曲线。",
+    "tags":["宏观","菲利普斯","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-020",
+    "type":"single",
+    "stem":"长期菲利普斯曲线的形态是：",
+    "graph":{"type":"phillips","long_run":true},
+    "options":["向下倾斜","向上倾斜","水平","垂直"],
+    "answer":[3],
+    "explain":"长期内通胀不影响失业率。",
+    "tags":["宏观","菲利普斯","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-021",
+    "type":"single",
+    "stem":"当税收增加时，总需求曲线将：",
+    "graph":{"type":"AD_AS","policy":"tax_increase"},
+    "options":["右移","左移","不变","旋转"],
+    "answer":[1],
+    "explain":"税收增加抑制需求。",
+    "tags":["宏观","财政政策","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-022",
+    "type":"single",
+    "stem":"货币紧缩政策在 AD-AS 图中的直接结果是：",
+    "graph":{"type":"AD_AS","policy":"monetary_tightening"},
+    "options":["AD 右移","AD 左移","AS 左移","AS 右移"],
+    "answer":[1],
+    "explain":"紧缩货币抑制总需求。",
+    "tags":["宏观","货币政策","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-023",
+    "type":"single",
+    "stem":"经济处于潜在产出水平时，图形上表现为：",
+    "graph":{"type":"AD_AS","equilibrium":"potential"},
+    "options":["AD 与 SRAS 交点","AD 与 LRAS 交点","SRAS 与 LRAS 平行","不存在均衡"],
+    "answer":[1],
+    "explain":"潜在产出对应 AD 与 LRAS 的交点。",
+    "tags":["宏观","潜在产出","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-024",
+    "type":"single",
+    "stem":"经济过热时，AD-AS 图中最可能出现：",
+    "graph":{"type":"AD_AS","state":"overheating"},
+    "options":["产出低于潜在","产出高于潜在","通缩","失业上升"],
+    "answer":[1],
+    "explain":"过热意味着产出超过潜在水平。",
+    "tags":["宏观","经济周期","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-025",
+    "type":"single",
+    "stem":"下列哪种政策组合最有利于抑制通胀？",
+    "graph":{"type":"policy_mix","goal":"anti_inflation"},
+    "options":["扩张财政+扩张货币","紧缩财政+紧缩货币","扩张财政+紧缩货币","中性政策"],
+    "answer":[1],
+    "explain":"双紧缩有利于压制需求。",
+    "tags":["宏观","政策组合","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-026",
+    "type":"single",
+    "stem":"当需求价格弹性为零时，需求曲线形态为：",
+    "graph":{"type":"elasticity","elasticity":"zero"},
+    "options":["水平","向下倾斜","垂直","向上倾斜"],
+    "answer":[2],
+    "explain":"完全无弹性需求为垂直线。",
+    "tags":["微观","弹性","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-027",
+    "type":"single",
+    "stem":"完全弹性需求曲线表现为：",
+    "graph":{"type":"elasticity","elasticity":"infinite"},
+    "options":["垂直","向下","水平","折线"],
+    "answer":[2],
+    "explain":"完全弹性需求为水平线。",
+    "tags":["微观","弹性","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-028",
+    "type":"single",
+    "stem":"最低工资高于均衡工资时，劳动力市场将出现：",
+    "graph":{"type":"labor_market","min_wage":"binding"},
+    "options":["劳动力短缺","失业","均衡改善","工资下降"],
+    "answer":[1],
+    "explain":"价格下限导致供给大于需求。",
+    "tags":["微观","劳动力市场","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-029",
+    "type":"single",
+    "stem":"价格上限低于均衡价格时，市场将出现：",
+    "graph":{"type":"price_ceiling","binding":true},
+    "options":["过剩","短缺","均衡","无影响"],
+    "answer":[1],
+    "explain":"价格上限导致需求大于供给。",
+    "tags":["微观","价格管制","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-030",
+    "type":"single",
+    "stem":"供给价格弹性较小的商品，其供给曲线通常：",
+    "graph":{"type":"elasticity","supply":"inelastic"},
+    "options":["平缓","垂直","向右下","向右上"],
+    "answer":[1],
+    "explain":"供给缺乏弹性时曲线陡峭。",
+    "tags":["微观","供给弹性","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-031",
+    "type":"single",
+    "stem":"税收楔形在图形中表示为：",
+    "graph":{"type":"tax_wedge","show":"gap"},
+    "options":["需求变化","供给变化","买卖价差","成本曲线旋转"],
+    "answer":[2],
+    "explain":"税收造成买卖双方价格差。",
+    "tags":["微观","税收","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-032",
+    "type":"single",
+    "stem":"政府补贴会使税收楔形：",
+    "graph":{"type":"subsidy","effect":"reduce_gap"},
+    "options":["扩大","缩小","不变","消失"],
+    "answer":[1],
+    "explain":"补贴缩小价格差。",
+    "tags":["微观","补贴","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-033",
+    "type":"single",
+    "stem":"当 SRAS 右移而 AD 不变时，最可能出现：",
+    "graph":{"type":"AD_AS","case":"SRAS_right"},
+    "options":["通胀","通缩","产出下降","失业上升"],
+    "answer":[1],
+    "explain":"供给改善会压低价格。",
+    "tags":["宏观","供给冲击","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-034",
+    "type":"single",
+    "stem":"经济衰退阶段的典型 AD-AS 表现是：",
+    "graph":{"type":"AD_AS","state":"recession"},
+    "options":["AD 偏左","AD 偏右","AS 垂直","LRAS 移动"],
+    "answer":[0],
+    "explain":"衰退伴随需求不足。",
+    "tags":["宏观","经济周期","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-035",
+    "type":"single",
+    "stem":"长期经济增长在 AD-AS 图中的根本表现是：",
+    "graph":{"type":"AD_AS","growth":"long_run"},
+    "options":["AD 右移","SRAS 左移","LRAS 右移","价格下降"],
+    "answer":[2],
+    "explain":"技术进步推动 LRAS 右移。",
+    "tags":["宏观","经济增长","图形题"]
+  },
+
+  {
+    "id":"GS-GRAPH-036",
+    "type":"single",
+    "stem":"若货币需求对利率极为敏感，LM 曲线将：",
+    "graph":{"type":"LM_shape","elasticity":"high"},
+    "options":["垂直","水平","向上倾斜","折线"],
+    "answer":[1],
+    "explain":"利率高度敏感 → LM 趋于水平。",
+    "tags":["宏观","LM 曲线","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-037",
+    "type":"single",
+    "stem":"IS 曲线陡峭通常意味着：",
+    "graph":{"type":"IS_shape","slope":"steep"},
+    "options":["投资对利率敏感","投资对利率不敏感","财政政策无效","货币政策无效"],
+    "answer":[1],
+    "explain":"投资对利率不敏感时 IS 较陡。",
+    "tags":["宏观","IS 曲线","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-038",
+    "type":"single",
+    "stem":"在 IS-LM 模型中，财政政策效果最强的情形是：",
+    "graph":{"type":"IS_LM","best_case":"fiscal"},
+    "options":["LM 垂直","LM 水平","IS 水平","IS 垂直"],
+    "answer":[1],
+    "explain":"LM 水平 → 无挤出。",
+    "tags":["宏观","政策效果","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-039",
+    "type":"single",
+    "stem":"货币政策效果最强的情形是：",
+    "graph":{"type":"IS_LM","best_case":"monetary"},
+    "options":["IS 垂直","IS 水平","LM 水平","LM 垂直"],
+    "answer":[0],
+    "explain":"IS 垂直 → 货币政策有效。",
+    "tags":["宏观","政策效果","图形题"]
+  },
+  {
+    "id":"GS-GRAPH-040",
+    "type":"single",
+    "stem":"当 AD 与 SRAS 同时右移时，最确定的结果是：",
+    "graph":{"type":"AD_AS","both_shift":"right"},
+    "options":["价格上升","价格下降","产出上升","通胀必然发生"],
+    "answer":[2],
+    "explain":"两个曲线右移，产出必然增加。",
+    "tags":["宏观","综合判断","图形题"]
+  }
+
+]
+;
+
+/* ======== 存储键 ======== */
+const STORE_KEY = "ECO_STAGE_GAME_V1";
+
+/* ======== 工具函数 ======== */
+const $ = (id)=>document.getElementById(id);
+const shuffle = (arr) => {
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+};
+const nowMs = ()=>Date.now();
+const pad2 = (n)=> String(n).padStart(2,"0");
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function saveState(s){
+  localStorage.setItem(STORE_KEY, JSON.stringify(s));
+}
+function clearState(){
+  localStorage.removeItem(STORE_KEY);
+}
+
+/* ======== 游戏状态 ======== */
+let mode = "stage"; // stage | review
+let timer = null;
+
+let state = loadState() || {
+  stageIndex: 1,
+  perStage: 10,
+  passScore: 70,
+  timeLimitMin: 0,
+  // current stage run
+  run: null,
+  // wrong book (ids)
+  wrong: [],
+  // stats
+  totalAnswered: 0,
+  totalCorrect: 0
+};
+
+function bankInfo(){
+  let raw = QUESTION_BANK.length;
+  let expanded = 0;
+  let materialGroups = 0;
+  let single = 0;
+  let multi = 0;
+
+  for(const q of QUESTION_BANK){
+    if(q.type === "material" && Array.isArray(q.subQuestions)){
+      materialGroups++;
+      expanded += q.subQuestions.length;
+      for(const sub of q.subQuestions){
+        const t = (sub.type === "multiple") ? "multi" : sub.type;
+        if(t === "single") single++;
+        if(t === "multi") multi++;
+      }
+    }else{
+      expanded++;
+      const t = (q.type === "multiple") ? "multi" : q.type;
+      if(t === "single") single++;
+      if(t === "multi") multi++;
+    }
+  }
+
+  return `题库：${raw} 组 / ${expanded} 道题（单选 ${single} · 多选 ${multi} · 材料组 ${materialGroups}）`;
+}
+
+
+/* ======== UI 绑定 ======== */
+const tagStage = $("tagStage");
+const tagMode = $("tagMode");
+const bankInfoEl = $("bankInfo");
+
+const perStageEl = $("perStage");
+const passScoreEl = $("passScore");
+const timeLimitEl = $("timeLimit");
+
+const btnStart = $("btnStart");
+const btnStartMobile = $("btnStartMobile");
+const btnSkip = $("btnSkip");
+const btnNext = $("btnNext");
+const btnSubmit = $("btnSubmit");
+const btnSubmitDesktop = $("btnSubmitDesktop");
+const btnNextDesktop = $("btnNextDesktop");
+const btnReview = $("btnReview");
+const btnResetProgress = $("btnResetProgress");
+const btnImport = $("btnImport");
+const btnExportWrong = $("btnExportWrong");
+
+const qMeta = $("qMeta");
+const qStem = $("qStem");
+const qTags = $("qTags");
+const optList = $("optList");
+const explainBox = $("explainBox");
+const bankInput = $("bankInput");
+
+const kpiProgress = $("kpiProgress");
+const kpiScore = $("kpiScore");
+const kpiStreak = $("kpiStreak");
+const kpiTime = $("kpiTime");
+
+function syncSettingsUI(){
+  perStageEl.value = state.perStage;
+  passScoreEl.value = state.passScore;
+  timeLimitEl.value = state.timeLimitMin;
+  bankInfoEl.textContent = bankInfo();
+}
+
+function setMode(m){
+  mode = m;
+  tagMode.textContent = (mode==="review") ? "错题复习" : "闯关模式";
+  $("btnReview").textContent = (mode==="review") ? "返回闯关" : "错题复习";
+  render();
+}
+
+function stopTimer(){
+  if(timer){ clearInterval(timer); timer=null; }
+}
+function startTimerIfNeeded(){
+  stopTimer();
+  if(!state.run) return;
+  if(state.run.timeLimitMs <= 0) return;
+  timer = setInterval(()=>{
+    const left = Math.max(0, state.run.deadlineMs - nowMs());
+    if(left <= 0){
+      stopTimer();
+      finishStageDueToTime();
+    }
+    renderKPI();
+  }, 250);
+}
+
+/* ======== 出题逻辑 ======== */
+function getQuestionById(id){
+  return QUESTION_BANK.find(q=>q.id===id) || null;
+}
+
+function makeStageRun(){
+  const per = state.perStage;
+  const pool = [];
+
+for (const q of QUESTION_BANK) {
+  if (q.type === "material" && Array.isArray(q.subQuestions)) {
+    for (const sub of q.subQuestions) {
+      pool.push({
+        ...sub,
+        __materialStem: q.stem
+      });
+    }
+  } else {
+    pool.push(q);
+  }
+}
+
+// 先随机抽题（不重复优先）
+const questions = shuffle(pool).slice(0, Math.min(per, pool.length));
+
+// 如果 per 大于题池数量，则允许重复抽取补足
+while (questions.length < per && pool.length > 0) {
+  questions.push(pool[Math.floor(Math.random() * pool.length)]);
+}
+
+
+  const timeLimitMs = (state.timeLimitMin||0) * 60 * 1000;
+  return {
+    stageIndex: state.stageIndex,
+    ids: questions,
+    i: 0,
+    score: 0,
+    streak: 0,
+    answered: 0,
+    correct: 0,
+    // per question record
+    history: {}, // id -> {picked:[...], correct:boolean}
+    timeLimitMs,
+    deadlineMs: timeLimitMs>0 ? (nowMs()+timeLimitMs) : 0,
+    // current question shuffled options mapping
+    current: null
+  };
+}
+
+function makeReviewRun(){
+  const wrongIds = state.wrong.slice();
+  if(wrongIds.length === 0) return null;
+
+  const qs = shuffle(wrongIds)
+    .map(id => getQuestionById(id))
+    .filter(Boolean);
+
+  if(qs.length === 0) return null;
+
+  return {
+    stageIndex: 0,
+    ids: qs, // ✅ 这里放题对象，不放字符串
+    i: 0,
+    score: 0,
+    streak: 0,
+    answered: 0,
+    correct: 0,
+    history: {},
+    timeLimitMs: 0,
+    deadlineMs: 0,
+    current: null
+  };
+}
+
+function prepareCurrentQuestion(){
+  if(!state.run) return;
+  const q = state.run.ids[state.run.i];
+  if(!q){ state.run.i++; return prepareCurrentQuestion(); }
+
+  // shuffle options, keep mapping
+  const order = shuffle(q.options.map((_,idx)=>idx));
+  const options = order.map(idx => q.options[idx]);
+
+  // correct indices after shuffle
+  const answerSet = new Set(q.answer);
+  const correctShuffled = order
+    .map((origIdx, newIdx) => answerSet.has(origIdx) ? newIdx : -1)
+    .filter(v=>v>=0);
+
+ state.run.current = {
+   id: q.id,
+     type: (q.type === "multiple" ? "multi" : q.type),
+   stem: q.__materialStem ? `【材料】${q.__materialStem}\n\n${q.stem}` : q.stem,
+   options,
+   correct: correctShuffled,
+   explain: q.explain || "",
+   tags: q.tags || []
+};
+
+}
+
+/* ======== 判分 ======== */
+function arraysEqualAsSet(a,b){
+  if(a.length !== b.length) return false;
+  const sa = new Set(a), sb = new Set(b);
+  if(sa.size !== sb.size) return false;
+  for(const x of sa) if(!sb.has(x)) return false;
+  return true;
+}
+
+function scoreQuestion(qType, picked, correct){
+  // 规则：单选/判断：对=100，错=0
+  // 多选：全对=100；如果包含错误选项=0；如果是正确子集=按覆盖率给分（但不超过80）
+  if(qType === "single"){
+    return arraysEqualAsSet(picked, correct) ? 100 : 0;
+  }
+  // multi
+  const pickedSet = new Set(picked);
+  const correctSet = new Set(correct);
+  // picked contains wrong
+  for(const p of pickedSet){
+    if(!correctSet.has(p)) return 0;
+  }
+  // all correct
+  if(arraysEqualAsSet(picked, correct)) return 100;
+  // partial (subset)
+  const coverage = picked.length / correct.length;
+  return Math.floor(coverage * 80); // partial up to 80
+}
+
+function updateWrongBook(id, isCorrect){
+  const idx = state.wrong.indexOf(id);
+  if(isCorrect){
+    if(idx >= 0) state.wrong.splice(idx, 1); // 做对从错题本移除
+  }else{
+    if(idx < 0) state.wrong.push(id); // 做错加入错题本
+  }
+}
+
+/* ======== 渲染 ======== */
+function renderKPI(){
+  if(!state.run){
+    kpiProgress.textContent = "0 / 0";
+    kpiScore.textContent = "0";
+    kpiStreak.textContent = "0";
+    kpiTime.textContent = "∞";
+    return;
+  }
+  const total = state.run.ids.length;
+  kpiProgress.textContent = `${state.run.i + 1} / ${total}`;
+  kpiScore.textContent = `${state.run.score}`;
+  kpiStreak.textContent = `${state.run.streak}`;
+
+  if(state.run.timeLimitMs <= 0) kpiTime.textContent = "∞";
+  else{
+    const left = Math.max(0, state.run.deadlineMs - nowMs());
+    const mm = Math.floor(left/60000);
+    const ss = Math.floor((left%60000)/1000);
+    kpiTime.textContent = `${pad2(mm)}:${pad2(ss)}`;
+  }
+}
+
+function renderQuestion(){
+  explainBox.style.display = "none";
+  explainBox.textContent = "";
+  btnNext.disabled = true;
+  btnNextDesktop.disabled = true;
+
+
+  if(!state.run){
+    qMeta.textContent = "—";
+    qStem.textContent = "点击“开始/继续”开始闯关";
+    qTags.textContent = "";
+    optList.innerHTML = "";
+    btnSubmit.disabled = true;
+    btnSubmitDesktop.disabled = true;
+
+
+    return;
+  }
+
+  if(!state.run.current) prepareCurrentQuestion();
+  const q = state.run.current;
+  if(!q){
+    qStem.textContent = "本轮结束";
+    optList.innerHTML = "";
+    btnSubmit.disabled = true;
+    return;
+  }
+
+  tagStage.textContent = (mode==="review") ? `复习 ${state.wrong.length} 题` : `第 ${state.run.stageIndex} 关`;
+  qMeta.textContent = `${q.id} · ${q.type==="single" ? "单选/判断" : "多选"}`;
+  qStem.textContent = q.stem;
+
+// ===== 图形题渲染 =====
+const old = document.getElementById("graphBox");
+if(old) old.remove();
+
+if(q.graph){
+  const box = createGraphBox();
+  const svg = renderGraphSVG(q.graph);
+  if(svg) box.appendChild(svg);
+  qStem.after(box);
+}
+
+  qTags.textContent = q.tags.length ? `标签：${q.tags.join(" / ")}` : "";
+
+  // build options
+  optList.innerHTML = "";
+  const isMulti = q.type === "multi";
+  const inputType = isMulti ? "checkbox" : "radio";
+
+  for(let i=0;i<q.options.length;i++){
+    const wrap = document.createElement("label");
+    wrap.className = "opt";
+   wrap.innerHTML = `
+         <input 
+            type="${inputType}" 
+             name="${isMulti ? `opt_${q.id}_${i}` : 'opt'}" 
+             value="${i}" 
+    />
+  <div><span class="mono">${String.fromCharCode(65+i)}.</span> ${q.options[i]}</div>
+`;
+
+    const input = wrap.querySelector("input");
+    input.addEventListener("change", updateSubmitEnabled);
+
+
+    optList.appendChild(wrap);
+  }
+
+  btnSubmit.disabled = true;
+}
+
+function updateSubmitEnabled(){
+  const inputs = [...optList.querySelectorAll("input")];
+  const any = inputs.some(x => x.checked);
+
+  // 手机按钮
+  btnSubmit.disabled = !any;
+
+  // 桌面按钮（关键就在这）
+  btnSubmitDesktop.disabled = !any;
+}
+
+
+function render(){
+  syncSettingsUI();
+  renderKPI();
+  renderQuestion();
+
+
+  saveState(state);
+}
+
+/* ======== 流程控制 ======== */
+function ensureRun(){
+  if(state.run) return;
+  if(mode === "review"){
+    state.run = makeReviewRun();
+    if(!state.run){
+      alert("错题本为空：先去闯关做题，系统会自动收集错题。");
+      setMode("stage");
+      return;
+    }
+  }else{
+    state.run = makeStageRun();
+  }
+  prepareCurrentQuestion();
+  startTimerIfNeeded();
+}
+
+function nextQuestion(){
+  if(!state.run) return;
+  state.run.current = null;
+  state.run.i++;
+
+  if(state.run.i >= state.run.ids.length){
+    // end run
+    if(mode === "review"){
+      alert(`复习完成：正确 ${state.run.correct} / ${state.run.answered}。错题本剩余：${state.wrong.length}。`);
+      state.run = null;
+      setMode("stage");
+      stopTimer();
+      render();
+      return;
+    }else{
+      finishStage();
+      return;
+    }
+  }
+
+  prepareCurrentQuestion();
+  render();
+}
+
+function finishStageDueToTime(){
+  if(!state.run) return;
+  alert("时间到！本关自动结算。");
+  finishStage();
+}
+
+function finishStage(){
+  if(!state.run) return;
+  stopTimer();
+
+  const total = state.run.ids.length;
+  const rawPercent = total>0 ? Math.round((state.run.score / (total*100)) * 100) : 0;
+  const pass = rawPercent >= state.passScore;
+
+  const msg =
+`第 ${state.run.stageIndex} 关结算：
+- 题数：${total}
+- 正确：${state.run.correct}
+- 得分（百分制）：${rawPercent}
+- 过关线：${state.passScore}
+- 结果：${pass ? "通过 ✅" : "未通过 ❌"}
+- 错题本：${state.wrong.length} 题`;
+
+  alert(msg);
+
+  // update global stats
+  state.totalAnswered += state.run.answered;
+  state.totalCorrect += state.run.correct;
+
+  if(pass){
+    state.stageIndex += 1;
+    state.run = null; // start new stage next time
+  }else{
+    // redo same stage with new random questions
+    state.run = null;
+  }
+  render();
+}
+
+/* ======== 提交判题 ======== */
+function revealMarking(picked, correct){
+  const opts = [...optList.querySelectorAll(".opt")];
+  for(let i=0;i<opts.length;i++){
+    opts[i].classList.remove("correct","wrong");
+  }
+  for(const c of correct){
+    if(opts[c]) opts[c].classList.add("correct");
+  }
+  // if user picked wrong options highlight those
+  for(const p of picked){
+    if(!correct.includes(p) && opts[p]) opts[p].classList.add("wrong");
+  }
+}
+
+btnSubmit.addEventListener("click", ()=>{
+  ensureRun();
+  const q = state.run.current;
+  if(!q) return;
+
+  const inputs = [...optList.querySelectorAll("input")];
+  const picked = inputs.filter(x=>x.checked).map(x=>parseInt(x.value,10));
+  const correct = q.correct.slice().sort((a,b)=>a-b);
+  const pickedSorted = picked.slice().sort((a,b)=>a-b);
+
+  const pts = scoreQuestion(q.type, pickedSorted, correct);
+  const isCorrect = (pts === 100);
+
+  // streak bonus: 连对每题额外+10分（最多+30），只在闯关模式生效
+  let bonus = 0;
+  if(mode==="stage"){
+    if(isCorrect){
+      state.run.streak += 1;
+      bonus = Math.min(30, (state.run.streak-1)*10);
+    }else{
+      state.run.streak = 0;
+    }
+  }
+
+  state.run.score += (pts + bonus);
+  state.run.answered += 1;
+  state.run.correct += isCorrect ? 1 : 0;
+
+  // record
+  state.run.history[q.id] = { picked: pickedSorted, correct: isCorrect, pts, bonus };
+
+  // wrong book update
+  updateWrongBook(q.id, isCorrect);
+
+  // show marking + explain
+  revealMarking(pickedSorted, correct);
+  explainBox.style.display = "block";
+  explainBox.textContent =
+`结果：${isCorrect ? "✅ 全对" : (pts>0 ? "🟡 部分得分" : "❌ 错")}（本题 ${pts} 分${bonus?` + 连对奖励 ${bonus}`:""}）
+正确选项：${correct.map(i=>String.fromCharCode(65+i)).join(", ")}
+你的选择：${pickedSorted.map(i=>String.fromCharCode(65+i)).join(", ") || "（未选）"}
+解析：${q.explain || "（无）"}`;
+
+  btnNext.disabled = false;
+  btnSubmit.disabled = true;
+  // 同步桌面按钮
+  btnNextDesktop.disabled = false;
+  btnSubmitDesktop.disabled = true;
+  renderKPI();
+  saveState(state);
+});
+
+btnNext.addEventListener("click", nextQuestion);
+
+// 桌面端按钮复用手机逻辑
+$("btnSubmitDesktop").addEventListener("click", ()=> btnSubmit.click());
+$("btnNextDesktop").addEventListener("click", ()=> btnNext.click());
+
+btnSkip.addEventListener("click", ()=>{
+  ensureRun();
+  // 跳过不计分，但计入进度（你也可以改成不计入 answered）
+  nextQuestion();
+});
+
+btnStart.addEventListener("click", ()=>{
+  // update settings from UI
+  state.perStage = Math.max(5, Math.min(50, parseInt(perStageEl.value||"10",10)));
+  state.passScore = Math.max(50, Math.min(100, parseInt(passScoreEl.value||"70",10)));
+  state.timeLimitMin = Math.max(0, Math.min(120, parseInt(timeLimitEl.value||"0",10)));
+  saveState(state);
+
+  ensureRun();
+  render();
+});
+btnStartMobile.addEventListener("click", ()=> btnStart.click());
+btnReview.addEventListener("click", ()=>{
+  if(mode === "review"){
+    // back to stage
+    state.run = null;
+    stopTimer();
+    setMode("stage");
+  }else{
+    // go review
+    state.run = null;
+    stopTimer();
+    setMode("review");
+  }
+});
+
+btnResetProgress.addEventListener("click", ()=>{
+  if(!confirm("确定清空进度与错题本？（题库不受影响）")) return;
+  clearState();
+  state = {
+    stageIndex: 1,
+    perStage: 10,
+    passScore: 70,
+    timeLimitMin: 0,
+    run: null,
+    wrong: [],
+    totalAnswered: 0,
+    totalCorrect: 0
+  };
+  stopTimer();
+  setMode("stage");
+  render();
+});
+
+btnImport.addEventListener("click", ()=>{
+  const raw = bankInput.value.trim();
+  if(!raw){
+    alert("请先在文本框粘贴题库 JSON。");
+    return;
+  }
+  try{
+    const data = JSON.parse(raw);
+    if(!Array.isArray(data)) throw new Error("题库必须是数组");
+    // basic validation
+    for(const q of data){
+      if(!q.id || !q.type || !q.stem || !Array.isArray(q.options) || !Array.isArray(q.answer)){
+        throw new Error("存在格式不完整的题目（需包含 id/type/stem/options/answer）");
+      }
+      if(!(q.type==="single" || q.type==="multi")){
+        throw new Error(`题目 ${q.id} 的 type 必须是 single 或 multi`);
+      }
+    }
+    QUESTION_BANK = data;
+    // reset run but keep progress and wrong book (you can choose to clear wrong)
+    state.run = null;
+    stopTimer();
+    alert(`导入成功：${QUESTION_BANK.length} 题。现在点“开始/继续”。`);
+    render();
+  }catch(e){
+    alert("导入失败：" + e.message);
+  }
+});
+
+btnExportWrong.addEventListener("click", ()=>{
+  const wrongQs = state.wrong.map(id=>getQuestionById(id)).filter(Boolean);
+  const out = JSON.stringify(wrongQs, null, 2);
+  bankInput.value = out;
+  alert(`已导出错题 ${wrongQs.length} 题到文本框（可复制保存）。`);
+});
+
+/* 初始渲染 */
+syncSettingsUI();
+setMode("stage");
+render();
+
+function createGraphBox(){
+  const box = document.createElement("div");
+  box.id = "graphBox";
+  box.style.margin = "12px 0";
+  box.style.padding = "10px";
+  box.style.border = "1px dashed rgba(255,255,255,.25)";
+  box.style.borderRadius = "12px";
+  box.style.background = "rgba(255,255,255,.03)";
+  return box;
+}
+function renderGraphSVG(graph){
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS,"svg");
+  svg.setAttribute("viewBox","0 0 300 220");
+  svg.style.width = "100%";
+  svg.style.maxWidth = "340px";
+  svg.style.display = "block";
+  svg.style.margin = "0 auto";
+
+  const line = (x1,y1,x2,y2,color="#7CFFB2",dash=false)=>{
+    const l = document.createElementNS(NS,"line");
+    l.setAttribute("x1",x1);
+    l.setAttribute("y1",y1);
+    l.setAttribute("x2",x2);
+    l.setAttribute("y2",y2);
+    l.setAttribute("stroke",color);
+    l.setAttribute("stroke-width","2");
+    if(dash) l.setAttribute("stroke-dasharray","6,4");
+    svg.appendChild(l);
+  };
+
+  const axis = ()=>{
+    line(40,10,40,190,"#ccc");
+    line(40,190,280,190,"#ccc");
+  };
+
+  axis();
+
+  switch(graph.type){
+
+    /* ===== 微观 ===== */
+
+    case "demand_shift":
+      line(70,40,240,170);
+      line(90,40,260,170,"#7CFFB2",true);
+      break;
+
+    case "supply_shift":
+      line(90,170,200,40);
+      line(70,170,180,40,"#7CFFB2",true);
+      break;
+
+    case "supply_demand":
+      line(70,40,240,170,"#7CFFB2");   // D
+      line(90,170,200,40,"#ff6b8b");   // S
+      break;
+
+    case "elasticity":
+      if(graph.elasticity === "high"){
+        line(80,50,200,170);
+      }else{
+        line(120,40,150,180);
+      }
+      break;
+
+    case "cost_curves":
+      line(80,160,200,60,"#ffcc66");   // ATC
+      line(100,180,200,80,"#7CFFB2");  // MC
+      break;
+
+    case "perfect_competition":
+      line(60,60,260,60,"#7CFFB2");    // MR=AR
+      line(100,180,200,80,"#ffcc66");  // MC
+      break;
+
+    case "monopoly":
+      line(70,40,240,170,"#7CFFB2");   // D
+      line(90,60,230,180,"#ff6b8b");   // MR
+      break;
+
+    case "tax_wedge":
+      line(70,40,240,170,"#7CFFB2");
+      line(90,170,200,40,"#ff6b8b");
+      line(160,90,160,140,"#ffcc66");
+      break;
+
+    case "subsidy":
+      line(90,170,200,40,"#7CFFB2");
+      line(110,170,220,40,"#7CFFB2",true);
+      break;
+
+    case "labor_market":
+      line(70,40,240,170,"#7CFFB2");   // DL
+      line(90,170,200,40,"#ff6b8b");   // SL
+      if(graph.min_wage){
+        line(40,120,280,120,"#ffcc66");
+      }
+      break;
+
+    case "price_ceiling":
+      line(70,40,240,170,"#7CFFB2");
+      line(90,170,200,40,"#ff6b8b");
+      line(40,100,280,100,"#ffcc66");
+      break;
+
+    /* ===== 宏观 ===== */
+
+    case "IS_LM":
+      line(70,170,230,50,"#7CFFB2");   // IS
+      line(140,180,140,40,"#ff6b8b");  // LM
+      break;
+
+    case "LM_shape":
+      if(graph.shape === "horizontal"){
+        line(60,100,260,100,"#ff6b8b");
+      }else{
+        line(140,180,140,40,"#ff6b8b");
+      }
+      break;
+
+    case "IS_shape":
+      if(graph.slope === "steep"){
+        line(120,180,160,40,"#7CFFB2");
+      }else{
+        line(70,170,230,50,"#7CFFB2");
+      }
+      break;
+
+    case "AD_AS":
+      line(70,40,240,170,"#7CFFB2");   // AD
+      line(90,170,200,40,"#ff6b8b");   // SRAS
+      line(160,40,160,190,"#ffcc66");  // LRAS
+      break;
+
+    case "phillips":
+      line(80,160,200,60,"#7CFFB2");
+      if(graph.long_run){
+        line(160,40,160,190,"#ffcc66");
+      }
+      break;
+
+    case "policy_mix":
+      line(70,170,230,50,"#7CFFB2");
+      line(140,180,140,40,"#ff6b8b");
+      break;
+
+    default:
+      // 未识别类型：只显示坐标轴
+      break;
+  }
+
+  return svg;
+}
+
+ (function(){
+    let raw = QUESTION_BANK.length;
+    let expanded = 0;
+    let materialGroups = 0;
+
+    QUESTION_BANK.forEach(q=>{
+      if(q.type === "material"){
+        materialGroups++;
+        expanded += q.subQuestions.length;
+      }else{
+        expanded++;
+      }
+    });
+
+    console.log("题库原始条目:", raw);
+    console.log("材料题组数:", materialGroups);
+    console.log("展开后的真实题量:", expanded);
+  })();
+
+</script>
+</body>
+</html>
